@@ -6,19 +6,10 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>mcm.projects.mypaths.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/mypaths2/greet</url-pattern>
-  </servlet-mapping>
   
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>MyPaths2.html</welcome-file>
+    <welcome-file>MyPathsApp.html</welcome-file>
   </welcome-file-list>
 
 </web-app>

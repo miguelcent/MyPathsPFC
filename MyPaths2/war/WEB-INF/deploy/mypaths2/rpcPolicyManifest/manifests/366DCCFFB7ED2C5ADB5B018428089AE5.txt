@@ -1,2 +1,0 @@
-serviceClass: mcm.projects.mypaths.client.GreetingService
-path: 40D9D237D841BECC9A5E2EE42D58B615.gwt.rpc
