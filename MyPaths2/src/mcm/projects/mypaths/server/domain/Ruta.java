@@ -1,32 +1,23 @@
 package mcm.projects.mypaths.server.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import java.util.List;
 import com.google.appengine.api.datastore.Key;
 
-@Entity
-public class Ruta implements Serializable {
+public class Ruta{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 471127327257227718L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
-	
 	private String nombre;
-	
 	private Date fechaCreacion;
-	
 	private String textoDescriptivo;
+	
+	private List<Comentario> comentarios;
+	
+	private Valoracion valoracion;
+	
+	private CategoriaRuta categoria;
+	
+	private Mapa mapa;
 
 	public String getNombre() {
 		return nombre;
@@ -54,6 +45,38 @@ public class Ruta implements Serializable {
 
 	public Key getKey() {
 		return key;
+	}
+
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
+	public Valoracion getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(Valoracion valoracion) {
+		this.valoracion = valoracion;
+	}
+
+	public CategoriaRuta getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaRuta categoria) {
+		this.categoria = categoria;
+	}
+
+	public Mapa getMapa() {
+		return mapa;
+	}
+
+	public void setMapa(Mapa mapa) {
+		this.mapa = mapa;
 	}
 	
 	

@@ -8,6 +8,7 @@
 			<g:MenuItem text="Inicio" ui:field="inicioLink"/>
 			<g:MenuItem text="Login" ui:field="loginLink"/>
 			<g:MenuItem text="Registro" ui:field="registroLink"/>
+			<g:MenuItem text="Buscar" ui:field="buscarLink"/>
 			<g:MenuItem text="Añadir Path" ui:field="addPathLink"/>
 			<g:MenuItem text="Perfil" ui:field="perfilLink"/>
 			<g:MenuItem text="Cerrar Sesión" ui:field="cerrarSesionLink"/>

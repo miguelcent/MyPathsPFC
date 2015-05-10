@@ -20,13 +20,13 @@ public class MenuCabeceraPnl extends Composite {
 	@UiField MenuItem addPathLink;
 	@UiField MenuItem perfilLink;
 	@UiField MenuItem cerrarSesionLink;
+	@UiField MenuItem buscarLink;
 
 	interface MenuCabeceraPnlUiBinder extends UiBinder<Widget, MenuCabeceraPnl> {
 	}
 
 	public MenuCabeceraPnl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		
 	}
 
 	public MenuBar getMenuBar() {
@@ -83,6 +83,14 @@ public class MenuCabeceraPnl extends Composite {
 
 	public void setCerrarSesionLink(MenuItem cerrarSesionLink) {
 		this.cerrarSesionLink = cerrarSesionLink;
+	}
+
+	public MenuItem getBuscarLink() {
+		return buscarLink;
+	}
+
+	public void setBuscarLink(MenuItem buscarLink) {
+		this.buscarLink = buscarLink;
 	}
 	
 }

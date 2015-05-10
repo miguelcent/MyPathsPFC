@@ -1,48 +1,31 @@
 package mcm.projects.mypaths.server.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
 import com.google.appengine.api.datastore.Blob;
+import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
 
-@Entity
-public class Usuario implements Serializable {
+
+public class Usuario{
 	
-	private static final long serialVersionUID = -5029275710232818218L;
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Key key;
-	
-	private  String login;
-	
-	private String password;
-	
-	private String email;
-	
-	private Date fechaIngreso;
-	
-	private String nombre;
-	
-	private String apellidos;
-	
-	private String ciudad;
-	
-	private String codigo_postal;
-	
-	private String pais;
-	
-	private Blob imagen_avatar; 
-	
-	private Date ultimoLogin;
-	
+    private Key key;	
+	private String login;	
+	private String password;	
+	private Email email;	
+	private Date fechaIngreso;	
+	private String nombre;	
+	private String apellidos;	
+	private String ciudad;	
+	private String codigo_postal;	
+	private String pais;	
+	private Blob imagen_avatar; 	
+	private Date ultimoLogin;	
 	private Date ultimoLogout;
+	
+	private List<Ruta> rutas;
 
 	public String getLogin() {
 		return login;
@@ -60,11 +43,11 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 
-	public String getEmail() {
+	public Email getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(Email email) {
 		this.email = email;
 	}
 
@@ -142,6 +125,14 @@ public class Usuario implements Serializable {
 
 	public Key getKey() {
 		return key;
+	}
+
+	public List<Ruta> getRutas() {
+		return rutas;
+	}
+
+	public void setRutas(List<Ruta> rutas) {
+		this.rutas = rutas;
 	}
 	
 	

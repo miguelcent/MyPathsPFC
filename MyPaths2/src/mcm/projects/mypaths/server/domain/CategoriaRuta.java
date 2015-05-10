@@ -1,25 +1,12 @@
 package mcm.projects.mypaths.server.domain;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.datastore.Key;
 
-@Entity
-public class CategoriaRuta implements Serializable {
+public class CategoriaRuta{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1979166497433181685L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Key key;
 	
 	private String nombreCategoria;

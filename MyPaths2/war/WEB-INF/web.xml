@@ -6,10 +6,28 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-  
+  <servlet>
+		<servlet-name>Upload</servlet-name>
+		<servlet-class>mcm.projects.mypaths.client.utils.Upload</servlet-class>
+	</servlet>
+	<servlet>
+	    <servlet-name>Serve</servlet-name>
+	    <servlet-class>mcm.projects.mypaths.client.utils.Serve</servlet-class>
+  	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Upload</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>Serve</servlet-name>
+	    <url-pattern>/serve</url-pattern>
+  	</servlet-mapping>
+	
   <!-- Default page to serve -->
   <welcome-file-list>
-    <welcome-file>MyPathsApp.html</welcome-file>
+    <!--  <welcome-file>MyPathsApp.html</welcome-file>	-->
+    <welcome-file>upload.jsp</welcome-file>
   </welcome-file-list>
 
 </web-app>
