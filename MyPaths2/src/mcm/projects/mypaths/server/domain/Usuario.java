@@ -3,6 +3,9 @@ package mcm.projects.mypaths.server.domain;
 import java.util.Date;
 import java.util.List;
 
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
+
+import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
@@ -11,7 +14,8 @@ import com.google.appengine.api.datastore.Key;
 public class Usuario{
 	
 	
-    private Key key;	
+    private Key key;
+    private String id;
 	private String login;	
 	private String password;	
 	private Email email;	
@@ -21,7 +25,7 @@ public class Usuario{
 	private String ciudad;	
 	private String codigo_postal;	
 	private String pais;	
-	private Blob imagen_avatar; 	
+	private BlobKey imagen_avatar; 	
 	private Date ultimoLogin;	
 	private Date ultimoLogout;
 	
@@ -99,11 +103,11 @@ public class Usuario{
 		this.pais = pais;
 	}
 
-	public Blob getImagen_avatar() {
+	public BlobKey getImagen_avatar() {
 		return imagen_avatar;
 	}
 
-	public void setImagen_avatar(Blob imagen_avatar) {
+	public void setImagen_avatar(BlobKey imagen_avatar) {
 		this.imagen_avatar = imagen_avatar;
 	}
 
@@ -133,6 +137,27 @@ public class Usuario{
 
 	public void setRutas(List<Ruta> rutas) {
 		this.rutas = rutas;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public static UsuarioDTO toDTO(Usuario u) {
+		UsuarioDTO ret = new UsuarioDTO();
+		ret.setApellidos(u.getApellidos());
+		ret.setCiudad(u.getCiudad());
+		ret.setCodigo_postal(u.getCodigo_postal());
+		ret.setEmail(u.getEmail().toString());
+		ret.setImage_avavatar_KEY(u.getImagen_avatar().toString());
+		ret.setNombre(u.getNombre());
+		ret.setPais(u.getPais());
+		ret.setUltimoLogin(u.getUltimoLogin());
+		return ret;
 	}
 	
 	

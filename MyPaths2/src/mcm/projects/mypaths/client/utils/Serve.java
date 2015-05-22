@@ -46,8 +46,8 @@ public class Serve extends HttpServlet{
             Entity senderismo = new Entity("CategoriaRuta", "Senderismo");
             senderismo.setProperty("nombreCategoria", "Senderismo");
             senderismo.setProperty("imagenCategoria", blobSend.toString());
-            Entity turistica = new Entity("CategoriaRuta", "Turística");
-            turistica.setProperty("nombreCategoria", "Turística");
+            Entity turistica = new Entity("CategoriaRuta", "Turistica");
+            turistica.setProperty("nombreCategoria", "Turistica");
             turistica.setProperty("imagenCategoria", blobTur.toString());
             
             toPersist.add(ciclismo);

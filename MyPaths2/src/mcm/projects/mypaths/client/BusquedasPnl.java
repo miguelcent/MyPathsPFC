@@ -1,9 +1,11 @@
 /**
  * 
  */
-package mcm.projects.mypaths.client.panels;
+package mcm.projects.mypaths.client;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.HasChangeHandlers;
+import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
@@ -41,10 +43,17 @@ public class BusquedasPnl extends Composite {
 	 */
 	public BusquedasPnl() {
 		initWidget(uiBinder.createAndBindUi(this));
-		this.getInputBusqueda().getElement().setPropertyString("placeholder", "Introduce el texto de busqueda");
+
+		this.inputBusqueda.getElement().setPropertyString("placeholder", "Introduce el texto de busqueda");
+		this.listaCategorias.addItem("Ciclista");
+		this.listaCategorias.addItem("Gastron�mica");
+		this.listaCategorias.addItem("Tur�stica");
+		this.listaCategorias.addItem("Senderismo");
+		this.listaCategorias.addItem("Running");
+
 	}
 
-	public ListBox getListaCategorias() {
+	public HasChangeHandlers getListaCategorias() {
 		return listaCategorias;
 	}
 
@@ -60,7 +69,7 @@ public class BusquedasPnl extends Composite {
 		this.inputBusqueda = inputBusqueda;
 	}
 
-	public Button getBuscarRutas() {
+	public HasClickHandlers getBuscarRutas() {
 		return buscarRutas;
 	}
 
@@ -75,5 +84,7 @@ public class BusquedasPnl extends Composite {
 	public void setFormContainer(HorizontalPanel formContainer) {
 		this.formContainer = formContainer;
 	}
+	 
+	 
 
 }

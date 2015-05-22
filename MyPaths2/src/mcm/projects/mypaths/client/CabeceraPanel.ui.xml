@@ -1,19 +1,17 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:pnl="urn:import:mcm.projects.mypaths.client.panels"
+	xmlns:pnl="urn:import:mcm.projects.mypaths.client"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:with field='res' type='mcm.projects.mypaths.client.resources.ResourcesBundle'></ui:with>
-	<ui:style>
-	
-	</ui:style>
+	<ui:style src="resources/GlobalStyles.css" />
 	<g:HTMLPanel>
 		<div align="center">
 			<g:HorizontalPanel height="100px">
 				<g:Cell verticalAlignment="ALIGN_BOTTOM">
 					<g:Image resource="{res.logo200}" ui:field="logoCabecera"/>
 				</g:Cell>
-				<g:Cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
-					<pnl:MenuCabeceraPnl ui:field="menuCabecera"/>
+				<g:Cell horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_BOTTOM">
+					<g:VerticalPanel ui:field="menuCabecera"/>
 				</g:Cell>
 			</g:HorizontalPanel>
 		</div>

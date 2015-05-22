@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style src="../resources/GlobalStyles.css" />
+	<g:HTMLPanel>
+		<g:HorizontalPanel>
+			<g:MenuBar ui:field="menuBar" height="35px">
+				<g:MenuItem ui:field="inicioLink" />
+				<g:MenuItem ui:field="loginLink" />
+				<g:MenuItem ui:field="registroLink" />
+				<g:MenuItem ui:field="buscarLink" />
+				<g:MenuItem ui:field="addPathLink" />
+				<g:MenuItem ui:field="perfilLink" />
+				<g:MenuItem ui:field="cerrarSesionLink" />
+			</g:MenuBar>
+			<g:Label ui:field="usernameLabel" />
+		</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

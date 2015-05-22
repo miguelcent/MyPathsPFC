@@ -46,7 +46,8 @@ public interface ResourcesBundle extends ClientBundle {
 	
 	@Source("logo200.png")
 	ImageResource logo200();
-
+	
+	@Source("mapa_fondo_fuente.PNG")
 	ImageResource mapa_fondo_fuente();
 
 	ImageResource mapa_fondo_fuenteNY();
@@ -61,5 +62,8 @@ public interface ResourcesBundle extends ClientBundle {
 	ImageResource turisticoBlue();
 
 	ImageResource verMapa();
+	
+//	@Source("GlobalStyles.css")
+//	GlobalStyles globalStyles();
 
 }
