@@ -6,7 +6,7 @@
 	<ui:style src="resources/GlobalStyles.css" />
 	<g:HTMLPanel>
 		<div align="center">
-			<g:HorizontalPanel height="100px">
+			<g:HorizontalPanel height="100px" width="672px">
 				<g:Cell verticalAlignment="ALIGN_BOTTOM">
 					<g:Image resource="{res.logo200}" ui:field="logoCabecera"/>
 				</g:Cell>

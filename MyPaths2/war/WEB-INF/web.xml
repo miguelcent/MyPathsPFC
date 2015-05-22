@@ -23,11 +23,21 @@
 	    <servlet-name>Serve</servlet-name>
 	    <url-pattern>/serve</url-pattern>
   	</servlet-mapping>
+  	
+  
+  <servlet>
+    <servlet-name>LoginServiceImpl</servlet-name>
+    <servlet-class>mcm.projects.mypaths.server.LoginServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginServiceImpl</servlet-name>
+    <url-pattern>/mypaths2/loginservice</url-pattern>
+  </servlet-mapping>
 	
   <!-- Default page to serve -->
   <welcome-file-list>
-    <!--  <welcome-file>MyPathsApp.html</welcome-file>	-->
-    <welcome-file>upload.jsp</welcome-file>
+    <welcome-file>MyPathsApp.html</welcome-file>
   </welcome-file-list>
 
 </web-app>
