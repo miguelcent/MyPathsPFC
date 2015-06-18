@@ -1,0 +1,48 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style />
+	
+	<g:HTMLPanel>
+		<g:HorizontalPanel height="35px">
+			<g:Cell>
+			
+				<g:Hyperlink ui:field="inicioLink"/>
+			
+			</g:Cell>
+			<g:Cell>
+			
+				<g:Hyperlink ui:field="loginLink"/>
+			
+			</g:Cell>
+			<g:Cell>
+			
+				<g:Hyperlink ui:field="registroLink"/>
+			
+			</g:Cell>
+			<g:Cell>
+			
+				<g:Hyperlink ui:field="buscarLink"/>
+			
+			</g:Cell>
+			<g:Cell>
+			
+				<g:Hyperlink ui:field="addPathLink"/>
+			
+			</g:Cell>
+			<g:Cell>
+			
+				<g:Hyperlink ui:field="perfilLink"/>
+			
+			</g:Cell>
+			<g:Cell>
+			
+				<g:Hyperlink ui:field="cerrarSesionLink"/>
+			
+			</g:Cell>
+			<g:Cell>
+				<g:Label ui:field="usernameLabel"/>
+			</g:Cell>
+		</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

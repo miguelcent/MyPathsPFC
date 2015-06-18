@@ -33,7 +33,7 @@ public class BusquedaPresenter implements Presenter{
 		this.display = display;
 		bind();
 	}
-	
+	//TODO pendiente definir que hace lo "clickable"
 	private void bind() {
 		
 		

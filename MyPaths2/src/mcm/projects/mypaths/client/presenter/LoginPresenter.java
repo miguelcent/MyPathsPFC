@@ -1,5 +1,6 @@
 package mcm.projects.mypaths.client.presenter;
 
+import mcm.projects.mypaths.client.MyPathsApp;
 import mcm.projects.mypaths.client.event.LoginEvent;
 import mcm.projects.mypaths.client.event.RememberEvent;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
@@ -77,6 +78,10 @@ public class LoginPresenter implements Presenter {
 				doLoginGoogle();
 			}
 		});
+		
+		if(MyPathsApp.get().getUsuarioActual()!=null){
+			display.getUsername().setValue(MyPathsApp.get().getUsuarioActual().getLogin());
+		}
 	}
 
 	@Override

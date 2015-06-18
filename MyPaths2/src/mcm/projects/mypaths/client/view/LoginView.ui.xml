@@ -1,0 +1,32 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style src="../resources/GlobalStyles.css" />
+	
+	<g:HTMLPanel>
+		<g:DecoratorPanel>
+			<g:VerticalPanel horizontalAlignment="ALIGN_CENTER"
+				verticalAlignment="ALIGN_MIDDLE">
+				<g:Label ui:field="titulo" />
+				<g:HorizontalPanel>
+					<g:Label ui:field="usernameLabel" />
+					<g:TextBox ui:field="usernameInput" />
+				</g:HorizontalPanel>
+				<g:HorizontalPanel>
+					<g:Label ui:field="passwordLabel" />
+					<g:PasswordTextBox ui:field="passwordInput" />
+				</g:HorizontalPanel>
+				<g:HorizontalPanel>
+					<g:Label ui:field="rememberText" />
+					<g:Hyperlink ui:field="rememberLink" />
+					<g:Button ui:field="loginButton" />
+				</g:HorizontalPanel>
+				<g:HorizontalPanel>
+					<g:Button ui:field="loginGoogleButton" styleName="boton" />
+				</g:HorizontalPanel>
+				<g:Label ui:field="completionLabel1" />
+            	<g:Label ui:field="completionLabel2"/>
+			</g:VerticalPanel>
+		</g:DecoratorPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

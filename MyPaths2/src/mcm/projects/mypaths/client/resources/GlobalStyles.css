@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+.outer{
+	background-color: #e1e1e1;
+/* 	background-image: url("mapa_fondo_fuente.PNG"); */
+}
+
+.boton {
+    font-family: 'Segoe UI', 'Open Sans', Arial, sans-serif;
+    display: block;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-align: center;
+    padding: 10px;
+    margin: 15px 0px 0px 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    background: #ED5E2F;
+    color: #FFF;
+    border: 0px none;
+    outline: 0px none;
+}
+
+.boton:hover {
+    background: #74A599;
+}
+
+.boton:active {
+    background: #F6A953;
+}
+
+.center {
+	margin: 0 auto;
+	
+}

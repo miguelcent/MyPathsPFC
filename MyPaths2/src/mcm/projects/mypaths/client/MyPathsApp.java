@@ -14,18 +14,19 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.maps.gwt.client.GoogleMap;
+import com.google.maps.gwt.client.LatLng;
+import com.google.maps.gwt.client.MapOptions;
+import com.google.maps.gwt.client.MapTypeId;
 
 import mcm.projects.mypaths.client.event.LoginEvent;
 import mcm.projects.mypaths.client.helper.RPCCall;
 import mcm.projects.mypaths.client.presenter.BusquedaPresenter;
-import mcm.projects.mypaths.client.presenter.LoginPresenter;
 import mcm.projects.mypaths.client.presenter.MenuPresenter;
 import mcm.projects.mypaths.client.service.LoginService;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
-import mcm.projects.mypaths.client.view.BusquedaView;
-import mcm.projects.mypaths.client.view.LoginView;
-import mcm.projects.mypaths.client.view.MenuView;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 /**
@@ -71,79 +72,86 @@ public class MyPathsApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
+		
 		singleton = this;
-	    getLoggedInUser();
+		getLoggedInUser();
 
-//		init();
 	}
-	
-	 private void getLoggedInUser() {
-		    new RPCCall<UsuarioDTO>() {
-		      @Override protected void callService(AsyncCallback<UsuarioDTO> cb) {
-		        loginService.getLoggedInUserDTO(cb);
-		      }
 
-		      @Override public void onSuccess(UsuarioDTO loggedInUserDTO) {
-		        if (loggedInUserDTO == null) {
-		          // nobody is logged in
-		          init();
-		        } else {
-		          // user is logged in
-		          setUsuarioActual(loggedInUserDTO);
-		          createUI();
-		        }
-		      }
+	private void getLoggedInUser() {
+		new RPCCall<UsuarioDTO>() {
+			@Override
+			protected void callService(AsyncCallback<UsuarioDTO> cb) {
+				loginService.getLoggedInUserDTO(cb);
+			}
 
-		      @Override public void onFailure(Throwable caught) {
-		        Window.alert("Error: " + caught.getMessage());
-		      }
-		    }.retry(3);
+			@Override
+			public void onSuccess(UsuarioDTO loggedInUserDTO) {
+				if (loggedInUserDTO == null) {
+					// nobody is logged in
+					init();
+				} else {
+					// user is logged in
+					setUsuarioActual(loggedInUserDTO);
+					createUI();
+				}
+			}
 
-		  }
-	 private void createUI() {
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Error: " + caught.getMessage());
+			}
+		}.retry(3);
 
-		    GWT.runAsync(new RunAsyncCallback() {
-		      @Override public void onFailure(Throwable reason) {
-		        Window.alert("Code download error: " + reason.getMessage());
-		      }
+	}
 
-		      @Override public void onSuccess() {
-		        goAfterLogin();
-		        eventBus.fireEvent(new LoginEvent(usuarioActual));
-		      }
-		    });
-		  }
-//El inicio si logado seria "Mis Rutas" (pendiente en su totalidad).
+	private void createUI() {
+
+		GWT.runAsync(new RunAsyncCallback() {
+			@Override
+			public void onFailure(Throwable reason) {
+				Window.alert("Code download error: " + reason.getMessage());
+			}
+
+			@Override
+			public void onSuccess() {
+				goAfterLogin();
+				eventBus.fireEvent(new LoginEvent(usuarioActual));
+			}
+		});
+	}
+
+	// El inicio si logado seria "Mis Rutas" (pendiente en su totalidad).
 	protected void goAfterLogin() {
-		
-		
+
 	}
 
 	public void init() {
-//		menuPresenter = new MenuPresenter(loginService, eventBus, new MenuView());
-		
+		// menuPresenter = new MenuPresenter(loginService, eventBus, new
+		// MenuView());
+
 		DockLayoutPanel outer = binder.createAndBindUi(this);
-//		menuPresenter.go(panelCabecera.menuCabecera);
-//		busquedaPresenter = new BusquedaPresenter(loginService, eventBus, new BusquedaView());
-//		busquedaPresenter.go(panelPrincipal);
+		// menuPresenter.go(panelCabecera.menuCabecera);
+		// busquedaPresenter = new BusquedaPresenter(loginService, eventBus, new
+		// BusquedaView());
+		// busquedaPresenter.go(panelPrincipal);
 		root = RootLayoutPanel.get();
 		root.clear();
 		root.add(outer);
-		
+
 		AppController appViewer = new AppController(loginService, eventBus);
-	    appViewer.go();
-	    
-	    
+		appViewer.go();
+
 	}
 
 	public SimpleEventBus getEventBus() {
 		return eventBus;
 	}
-	
+
 	public UsuarioDTO getUsuarioActual() {
 		return usuarioActual;
 	}
-	
+
 	void setUsuarioActual(UsuarioDTO currentUser) {
 		this.usuarioActual = currentUser;
 	}
