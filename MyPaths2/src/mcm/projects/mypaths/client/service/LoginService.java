@@ -9,6 +9,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("loginservice")
 public interface LoginService extends RemoteService {
 
-  UsuarioDTO getLoggedInUserDTO();
-  void logout() throws NotLoggedInException;
+  UsuarioDTO getLoggedInUserDTO(String loggedUsername);
+  Boolean logout(String loggedUsername) throws NotLoggedInException;
 }

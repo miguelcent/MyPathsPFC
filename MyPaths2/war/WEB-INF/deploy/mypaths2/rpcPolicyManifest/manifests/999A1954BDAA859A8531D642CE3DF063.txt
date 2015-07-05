@@ -1,0 +1,2 @@
+serviceClass: mcm.projects.mypaths.client.service.UserService
+path: 15828834863431E9FF281F8353C60900.gwt.rpc

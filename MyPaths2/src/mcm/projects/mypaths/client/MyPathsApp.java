@@ -8,23 +8,14 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.maps.gwt.client.GoogleMap;
-import com.google.maps.gwt.client.LatLng;
-import com.google.maps.gwt.client.MapOptions;
-import com.google.maps.gwt.client.MapTypeId;
-
 import mcm.projects.mypaths.client.event.LoginEvent;
-import mcm.projects.mypaths.client.helper.RPCCall;
-import mcm.projects.mypaths.client.presenter.BusquedaPresenter;
-import mcm.projects.mypaths.client.presenter.MenuPresenter;
 import mcm.projects.mypaths.client.service.LoginService;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
@@ -37,7 +28,8 @@ public class MyPathsApp implements EntryPoint {
 
 	interface MyPathsAppUiBinder extends UiBinder<DockLayoutPanel, MyPathsApp> {
 	}
-
+	
+	
 	@UiField
 	CabeceraPanel panelCabecera;
 	@UiField
@@ -48,16 +40,8 @@ public class MyPathsApp implements EntryPoint {
 	RootLayoutPanel root;
 
 	private static MyPathsApp singleton;
-	// TODO Inicializamos usuarioActual a null temporalmente hasta desarrollar
-	// el
-	// servicio de usuarios.
-	private UsuarioDTO usuarioActual = null;
+	private UsuarioDTO usuarioActual = new UsuarioDTO();
 	private SimpleEventBus eventBus = new SimpleEventBus();
-	// Presenters
-	private MenuPresenter menuPresenter;
-	private BusquedaPresenter busquedaPresenter;
-
-	// RPC services
 	private LoginServiceAsync loginService = GWT.create(LoginService.class);;
 
 	/**
@@ -72,73 +56,40 @@ public class MyPathsApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		
 		singleton = this;
-		getLoggedInUser();
+		init();
 
 	}
+//TODO ya se vera si hace algo diferente con session storage lleno o vacio.
+//	private void getLoggedInUser() {
+//		Storage storage = Storage.getSessionStorageIfSupported();
+//			if(storage.getItem("currentUser")==null || storage.getItem("currentUser")==""){
+//				init();
+//			}else {
+//				createUI();
+//			}
+//	}
 
-	private void getLoggedInUser() {
-		new RPCCall<UsuarioDTO>() {
-			@Override
-			protected void callService(AsyncCallback<UsuarioDTO> cb) {
-				loginService.getLoggedInUserDTO(cb);
-			}
-
-			@Override
-			public void onSuccess(UsuarioDTO loggedInUserDTO) {
-				if (loggedInUserDTO == null) {
-					// nobody is logged in
-					init();
-				} else {
-					// user is logged in
-					setUsuarioActual(loggedInUserDTO);
-					createUI();
-				}
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Error: " + caught.getMessage());
-			}
-		}.retry(3);
-
-	}
-
-	private void createUI() {
-
-		GWT.runAsync(new RunAsyncCallback() {
-			@Override
-			public void onFailure(Throwable reason) {
-				Window.alert("Code download error: " + reason.getMessage());
-			}
-
-			@Override
-			public void onSuccess() {
-				goAfterLogin();
-				eventBus.fireEvent(new LoginEvent(usuarioActual));
-			}
-		});
-	}
-
-	// El inicio si logado seria "Mis Rutas" (pendiente en su totalidad).
-	protected void goAfterLogin() {
-
-	}
+//	private void createUI() {
+//
+//		GWT.runAsync(new RunAsyncCallback() {
+//			@Override
+//			public void onFailure(Throwable reason) {
+//				Window.alert("Code download error: " + reason.getMessage());
+//			}
+//
+//			@Override
+//			public void onSuccess() {
+//				eventBus.fireEvent(new LoginEvent(usuarioActual));
+//			}
+//		});
+//	}
 
 	public void init() {
-		// menuPresenter = new MenuPresenter(loginService, eventBus, new
-		// MenuView());
-
 		DockLayoutPanel outer = binder.createAndBindUi(this);
-		// menuPresenter.go(panelCabecera.menuCabecera);
-		// busquedaPresenter = new BusquedaPresenter(loginService, eventBus, new
-		// BusquedaView());
-		// busquedaPresenter.go(panelPrincipal);
 		root = RootLayoutPanel.get();
 		root.clear();
 		root.add(outer);
-
 		AppController appViewer = new AppController(loginService, eventBus);
 		appViewer.go();
 
@@ -152,7 +103,7 @@ public class MyPathsApp implements EntryPoint {
 		return usuarioActual;
 	}
 
-	void setUsuarioActual(UsuarioDTO currentUser) {
+	public void setUsuarioActual(UsuarioDTO currentUser) {
 		this.usuarioActual = currentUser;
 	}
 

@@ -60,6 +60,9 @@ public interface ResourcesBundle extends ClientBundle {
 
 	@Source("turistico-blue.png")
 	ImageResource turisticoBlue();
+	
+	@Source("blank_profile.gif")
+	ImageResource profileBlank();
 
 	ImageResource verMapa();
 	

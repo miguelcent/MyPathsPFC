@@ -1,8 +1,10 @@
 package mcm.projects.mypaths.client.presenter;
 
 import mcm.projects.mypaths.client.MyPathsApp;
+import mcm.projects.mypaths.client.event.AddPathEvent;
 import mcm.projects.mypaths.client.event.InicioEvent;
 import mcm.projects.mypaths.client.event.LoginEvent;
+import mcm.projects.mypaths.client.event.LogoutEvent;
 import mcm.projects.mypaths.client.helper.RPCCall;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.shared.dto.UserAccountDTO;
@@ -13,6 +15,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasText;
@@ -44,8 +47,7 @@ public class MenuPresenter implements Presenter {
 		this.rpcService = rpcService;
 		this.eventBus = eventBus;
 		this.display = display;
-		usuario.setNombre("miguel");
-		usuario.setApellidos("Centeno");
+		
 	}
 
 	public void bind() {
@@ -55,27 +57,29 @@ public class MenuPresenter implements Presenter {
 			public void execute() {
 				doLogout();
 			}
-		});
-				
+		});				
 	}
 
 	protected void doLogout() {
-		new RPCCall<Void>() {
-			@Override
-			protected void callService(AsyncCallback<Void> cb) {
-				rpcService.logout(cb);
-			}
-
-			@Override
-			public void onSuccess(Void result) {
-				// logout event already fired by RPCCall
-			}
+		String logado = Storage.getSessionStorageIfSupported().getItem("currentUser");
+		final Boolean desLogado;
+		rpcService.logout(logado, new AsyncCallback<Boolean>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("An error occurred: " + caught.toString());
+				Window.alert("Error al hacer logout..:");
 			}
-		}.retry(3);
+
+			@Override
+			public void onSuccess(Boolean result) {
+				if(result = true){
+					Window.alert("Usuario "+ Storage.getSessionStorageIfSupported().getItem("currentUser")+"ha cerrado sesión correctamente.");
+					Storage.getSessionStorageIfSupported().clear();
+					MyPathsApp.get().setUsuarioActual(null);
+					eventBus.fireEvent(new LogoutEvent());
+				}
+			}
+		});
 	}
 
 	@Override

@@ -6,7 +6,7 @@
 	
 	</ui:style>
 	<g:HTMLPanel>
-		<g:FormPanel>
+		<g:FormPanel ui:field="addPathForm">
 			<g:DecoratorPanel>
 				<g:HorizontalPanel>
 					<g:VerticalPanel>
@@ -23,8 +23,10 @@
 							<g:TextArea ui:field="descripcionInput" width="300px" height="180px"/>
 						</g:HorizontalPanel>
 						<g:HorizontalPanel>
-							<g:Label ui:field="mapaLabel" width="120px"/>
-							<g:FileUpload ui:field="mapaUpload" width="300px"/>
+							
+								<g:Label ui:field="mapaLabel" width="120px"/>
+								<g:FileUpload ui:field="mapaUpload" width="300px"/>
+							
 						</g:HorizontalPanel>
 						<g:Button ui:field="botonEnviar" />
 					</g:VerticalPanel>

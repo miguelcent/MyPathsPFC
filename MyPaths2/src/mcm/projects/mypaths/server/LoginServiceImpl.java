@@ -1,33 +1,40 @@
 package mcm.projects.mypaths.server;
 
-import javax.servlet.http.HttpSession;
+import javax.jdo.PersistenceManager;
 
 import mcm.projects.mypaths.client.service.LoginService;
 import mcm.projects.mypaths.server.domain.Usuario;
 import mcm.projects.mypaths.shared.NotLoggedInException;
+import mcm.projects.mypaths.shared.builder.UsuarioBuilder;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")
 public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginService {
-
+	public UsuarioDTO loggedInUser = new UsuarioDTO();
 	@Override
-	public UsuarioDTO getLoggedInUserDTO() {
-		UsuarioDTO user;
-		HttpSession session = getThreadLocalRequest().getSession();
-		Usuario u = LoginHelper.getLoggedInUser(session, null);
-	    if (u == null)
-	      return null;
-	    user = Usuario.toDTO(u);
-	    return user;
+	public UsuarioDTO getLoggedInUserDTO(String loggedUsername) {	    
+	    if(loggedUsername==null || loggedUsername==""){
+	    	Window.alert("Error: Usuario no logado");
+	    } else {
+	    	PersistenceManager pm = PMF.get();
+			Usuario user = pm.getObjectById(Usuario.class, loggedUsername);
+			loggedInUser = UsuarioBuilder.getUsuarioDTO(user);
+	    }
+		
+		return loggedInUser;
 	}
 
 	@Override
-	public void logout() throws NotLoggedInException {
-		getThreadLocalRequest().getSession().invalidate();
-		throw new NotLoggedInException("Logged out");
+	public Boolean logout(String loggedUsername) throws NotLoggedInException {
+		Boolean ret = false;
+		if(!(loggedUsername == null || loggedUsername.equals(""))){
+			ret = true;
+		}
+		return ret;
 	}
 
 }

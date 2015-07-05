@@ -1,17 +1,9 @@
 package mcm.projects.mypaths.client.view;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasValue;
@@ -50,15 +42,6 @@ public class LoginView extends Composite implements LoginPresenter.Display {
 	@UiField
 	Button loginGoogleButton;
 
-	// Validation fields
-	@UiField
-	Label completionLabel1;
-
-	@UiField
-	Label completionLabel2;
-	
-	private Boolean tooShort = false;
-
 	public LoginView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		this.titulo.setText("Login");
@@ -72,19 +55,6 @@ public class LoginView extends Composite implements LoginPresenter.Display {
 		this.rememberLink.setText("aquí.");
 		this.loginButton.setText("Login");
 		this.loginGoogleButton.setText("Login Google");
-		
-		usernameInput.addFocusHandler(new FocusHandler(){
-
-			@Override
-			public void onFocus(FocusEvent event) {
-				if(usernameInput.getText().length()<6 && completionLabel1.getText().length()>0){
-					completionLabel1.setText("");
-				}
-			}
-			
-		});
-		
-		
 	}
 
 	@Override
@@ -115,39 +85,4 @@ public class LoginView extends Composite implements LoginPresenter.Display {
 	public Widget asWidget() {
 		return this;
 	}
-	
-	@UiHandler("usernameInput")
-	void handleLoginChange(BlurEvent event) {
-		if (usernameInput.getValue().length() < 6) {
-			completionLabel1.setText("Login too short (Size must be > 6)");
-		} else {
-			completionLabel1.setText("");
-		}
-	}
-	
-	@UiHandler("usernameInput")
-	void handleLoginChange(FocusEvent event) {
-		if(completionLabel1.getText().length()>0){
-			completionLabel1.setText("");
-			completionLabel2.setText("");
-		}
-	}
-	
-	@UiHandler("passwordInput")
-	void handlePasswordLostFocus(BlurEvent event) {
-		if (passwordInput.getValue().length() < 6) {
-			completionLabel2.setText("Password too short (Size must be > 6)");
-		} else {
-			completionLabel2.setText("");
-		}
-	}
-	
-	@UiHandler("passwordInput")
-	void handlePasswordGainFocus(FocusEvent event) {
-		if(completionLabel2.getText().length()>0){
-			completionLabel1.setText("");
-			completionLabel2.setText("");
-		}
-	}
-
 }

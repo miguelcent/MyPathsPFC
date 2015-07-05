@@ -3,6 +3,18 @@ package mcm.projects.mypaths.server.domain;
 import java.util.Date;
 import java.util.List;
 
+
+
+
+
+
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.appengine.api.blobstore.BlobKey;
@@ -10,25 +22,38 @@ import com.google.appengine.api.datastore.Blob;
 import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
 
-
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Usuario{
 	
 	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Key key;
-    private String id;
-	private String login;	
-	private String password;	
-	private Email email;	
-	private Date fechaIngreso;	
+	@Persistent
+	private String login;
+	@Persistent
+	private String password;
+	@Persistent
+	private Email email;
+	@Persistent
+	private Date fechaIngreso;
+	@Persistent
 	private String nombre;	
-	private String apellidos;	
-	private String ciudad;	
+	@Persistent
+	private String apellidos;
+	@Persistent
+	private String ciudad;
+	@Persistent
 	private String codigo_postal;	
+	@Persistent
 	private String pais;	
-	private BlobKey imagen_avatar; 	
+	@Persistent
+	private BlobKey imagen_avatar; 
+	@Persistent
 	private Date ultimoLogin;	
+	@Persistent
 	private Date ultimoLogout;
-	
+	@Persistent
 	private List<Ruta> rutas;
 
 	public String getLogin() {
@@ -127,10 +152,6 @@ public class Usuario{
 		this.ultimoLogout = ultimoLogout;
 	}
 
-	public Key getKey() {
-		return key;
-	}
-
 	public List<Ruta> getRutas() {
 		return rutas;
 	}
@@ -139,28 +160,12 @@ public class Usuario{
 		this.rutas = rutas;
 	}
 
-	public String getId() {
-		return id;
+	public Key getKey() {
+		return key;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setKey(Key id) {
+		this.key = id;
 	}
-
-	public static UsuarioDTO toDTO(Usuario u) {
-		UsuarioDTO ret = new UsuarioDTO();
-		ret.setApellidos(u.getApellidos());
-		ret.setCiudad(u.getCiudad());
-		ret.setCodigo_postal(u.getCodigo_postal());
-		ret.setEmail(u.getEmail().toString());
-		ret.setImage_avavatar_KEY(u.getImagen_avatar().toString());
-		ret.setNombre(u.getNombre());
-		ret.setPais(u.getPais());
-		ret.setUltimoLogin(u.getUltimoLogin());
-		return ret;
-	}
-	
-	
-	
 	
 }

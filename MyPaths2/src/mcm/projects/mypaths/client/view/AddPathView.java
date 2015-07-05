@@ -1,14 +1,10 @@
 package mcm.projects.mypaths.client.view;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.dom.client.HasClickHandlers;
-import com.google.gwt.event.dom.client.LoadEvent;
-import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FileUpload;
@@ -17,14 +13,9 @@ import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.maps.gwt.client.GoogleMap;
-import com.google.maps.gwt.client.LatLng;
-import com.google.maps.gwt.client.MapOptions;
-import com.google.maps.gwt.client.MapTypeId;
 
 import mcm.projects.mypaths.client.presenter.AddPathPresenter;
 
@@ -52,10 +43,16 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 	Label mapaLabel;
 	@UiField
 	FileUpload mapaUpload;
+	
+
+	
+
 	@UiField
 	FlowPanel mapCanvas;
 	@UiField
 	Button botonEnviar;
+	@UiField
+	FormPanel addPathForm;
 
 	public AddPathView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -70,6 +67,10 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 		descripcionLabel.setText("Descripción ruta (*)");
 		descripcionInput.getElement().setPropertyString("placeholder", "Descripción de la ruta...");
 		botonEnviar.setText("Enviar");
+		addPathForm.setAction("/AddPath");
+		addPathForm.setEncoding(FormPanel.ENCODING_MULTIPART);
+		addPathForm.setMethod(FormPanel.METHOD_POST);
+		mapaUpload.getElement().setAttribute("accept", ".kml");
 		mapCanvas.getElement().setId("map-canvas");
 	}
 
@@ -104,5 +105,23 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 		// TODO Auto-generated method stub
 		return mapCanvas;
 	}
+	
+	@Override
+	public FormPanel getFormPanel() {
+		return addPathForm;
+	}
 
+
+
+	@Override
+	public FileUpload getFileUpload() {
+		return mapaUpload;
+	}
+	
+	public void setMapaUpload(FileUpload mapaUpload) {
+		this.mapaUpload = mapaUpload;
+	}
+
+
+	
 }

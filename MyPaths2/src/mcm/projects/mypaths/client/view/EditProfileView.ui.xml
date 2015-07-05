@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style src="../resources/GlobalStyles.css" />
 	<g:HTMLPanel>
-		<g:FormPanel ui:field="formulario">
+		<g:FormPanel>
 			<g:DecoratorPanel>
 				<g:HorizontalPanel>
 					<g:VerticalPanel>
@@ -38,21 +38,19 @@
 							<g:ListBox ui:field="listaPaises"/>
 						</g:HorizontalPanel>
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="fotoLabel" width="120px"/>
+							<g:Button ui:field="editarButton" styleName="boton"/>
+						</g:HorizontalPanel>
+					</g:VerticalPanel>
+					<g:VerticalPanel horizontalAlignment="ALIGN_CENTER">
+						<g:FlowPanel ui:field="image" width="200px" height="250px" >
+						</g:FlowPanel>
+						<g:HorizontalPanel horizontalAlignment="right">
+							<g:Label ui:field="fotoLabel"/>
 							<g:FileUpload ui:field="fotoUpload"/>
 						</g:HorizontalPanel>
-						<g:HorizontalPanel>
-							<g:CheckBox ui:field="chkCondiciones"/>
-							<g:Label ui:field="aceptoTxt" width="65px"/>
-							<g:Hyperlink ui:field="aceptoLink" />
-						</g:HorizontalPanel>
-						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Button ui:field="registroButton" styleName="boton"/>
-						</g:HorizontalPanel>
-						<g:Label ui:field="validationMessages" width="400px"></g:Label>
 					</g:VerticalPanel>
 				</g:HorizontalPanel>
 			</g:DecoratorPanel>
 		</g:FormPanel>
 	</g:HTMLPanel>
-</ui:UiBinder> 
+</ui:UiBinder>

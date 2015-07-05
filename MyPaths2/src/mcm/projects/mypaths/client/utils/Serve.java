@@ -16,6 +16,10 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 
 public class Serve extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 	private DatastoreService dt = DatastoreServiceFactory.getDatastoreService();
 

@@ -2,22 +2,31 @@ package mcm.projects.mypaths.client;
 
 import mcm.projects.mypaths.client.event.AddPathEvent;
 import mcm.projects.mypaths.client.event.AddPathEventHandler;
+import mcm.projects.mypaths.client.event.EditProfileEvent;
+import mcm.projects.mypaths.client.event.EditProfileEventHandler;
 import mcm.projects.mypaths.client.event.InicioEvent;
 import mcm.projects.mypaths.client.event.InicioEventHandler;
 import mcm.projects.mypaths.client.event.LoginEvent;
 import mcm.projects.mypaths.client.event.LoginEventHandler;
+import mcm.projects.mypaths.client.event.LogoutEvent;
+import mcm.projects.mypaths.client.event.LogoutEventHandler;
 import mcm.projects.mypaths.client.event.RegistroEvent;
 import mcm.projects.mypaths.client.event.RegistroEventHandler;
 import mcm.projects.mypaths.client.presenter.AddPathPresenter;
 import mcm.projects.mypaths.client.presenter.BusquedaPresenter;
+import mcm.projects.mypaths.client.presenter.EditProfilePresenter;
 import mcm.projects.mypaths.client.presenter.LoginPresenter;
 import mcm.projects.mypaths.client.presenter.MenuPresenter;
 import mcm.projects.mypaths.client.presenter.Presenter;
 import mcm.projects.mypaths.client.presenter.RegistroPresenter;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
+import mcm.projects.mypaths.client.service.UserService;
+import mcm.projects.mypaths.client.service.UserServiceAsync;
 import mcm.projects.mypaths.client.utils.MapsUtils;
+import mcm.projects.mypaths.client.utils.MenuUtil;
 import mcm.projects.mypaths.client.view.AddPathView;
 import mcm.projects.mypaths.client.view.BusquedaView;
+import mcm.projects.mypaths.client.view.EditProfileView;
 import mcm.projects.mypaths.client.view.LoginView;
 import mcm.projects.mypaths.client.view.MenuView;
 import mcm.projects.mypaths.client.view.RegistroView;
@@ -33,8 +42,8 @@ public class AppController implements ValueChangeHandler<String> {
 	private final SimpleEventBus eventbus;
 	private LoginServiceAsync loginService;
 	private LoginPresenter loginPresenter;
-	private RegistroPresenter registroPresenter;
-	private MenuView menu;
+	private MenuView menuView;
+	
 
 	public AppController(LoginServiceAsync loginService, SimpleEventBus eventbus) {
 		this.eventbus = eventbus;
@@ -77,6 +86,30 @@ public class AppController implements ValueChangeHandler<String> {
 			}
 		});
 		
+		eventbus.addHandler(EditProfileEvent.TYPE, new EditProfileEventHandler() {
+			@Override
+			public void onEditProfile(EditProfileEvent event) {
+				doEditProfile();
+			}
+		});
+		
+		eventbus.addHandler(LogoutEvent.TYPE, new LogoutEventHandler() {
+			
+			@Override
+			public void onLogout(LogoutEvent event) {
+				doLogout();
+			}
+		});
+		
+	}
+
+	protected void doLogout() {
+		History.newItem("Logout");
+		History.newItem("Inicio");
+	}
+
+	protected void doEditProfile() {
+		History.newItem("Perfil");
 	}
 
 	protected void doRegistro() {
@@ -116,61 +149,26 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter = new BusquedaPresenter(loginService, eventbus,
 						new BusquedaView());
 				presenter.go(MyPathsApp.get().getPanelPrincipal());
-				// TODO en cada caso, si MyPaths.get().getUsuarioActual()!=null
-				// y History.getToken().equals(X). hacemos Y
-				if (MyPathsApp.get().getUsuarioActual() == null) {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getAddPathLink());
-					menu.getMenuBar().removeItem(menu.getCerrarSesionLink());
-					menu.getMenuBar().removeItem(menu.getPerfilLink());
-				} else {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getLoginLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-				}
-				presenter2 = new MenuPresenter(loginService, eventbus, menu);
+				menuView = MenuUtil.getMenu(token);				
+				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
 			} else if (token.equals("Login")) {
 				presenter = getLoginPresenter();
 				presenter.go(MyPathsApp.get().getPanelPrincipal());
-				if (MyPathsApp.get().getUsuarioActual() == null) {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getAddPathLink());
-					menu.getMenuBar().removeItem(menu.getCerrarSesionLink());
-					menu.getMenuBar().removeItem(menu.getPerfilLink());
-					menu.getMenuBar().removeItem(menu.getLoginLink());
-				} else {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getLoginLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-				}
-				presenter2 = new MenuPresenter(loginService, eventbus, menu);
+				menuView = MenuUtil.getMenu(token);		
+				
+				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
 				return;
 			} else if (token.equals("Registro")) {
-				presenter = new RegistroPresenter(loginService, eventbus,
+				UserServiceAsync userservice = GWT.create(UserService.class);
+				presenter = new RegistroPresenter(userservice, eventbus,
 						new RegistroView());
 				presenter.go(MyPathsApp.get().getPanelPrincipal());
-				if (MyPathsApp.get().getUsuarioActual() == null) {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getAddPathLink());
-					menu.getMenuBar().removeItem(menu.getCerrarSesionLink());
-					menu.getMenuBar().removeItem(menu.getPerfilLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-				} else {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-				}
-				presenter2 = new MenuPresenter(loginService, eventbus, menu);
+				menuView = MenuUtil.getMenu(token);
+				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
 				return;
@@ -179,26 +177,24 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter = new AddPathPresenter(loginService, eventbus,
 						vista);
 				presenter.go(MyPathsApp.get().getPanelPrincipal());
+				
 				MapsUtils.pintarMapaDefecto(vista);
-				if (MyPathsApp.get().getUsuarioActual() == null) {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getAddPathLink());
-					menu.getMenuBar().removeItem(menu.getCerrarSesionLink());
-					menu.getMenuBar().removeItem(menu.getPerfilLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-				} else {
-					menu = new MenuView();
-					menu.getMenuBar().removeItem(menu.getBuscarLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-					menu.getMenuBar().removeItem(menu.getRegistroLink());
-				}
-				presenter2 = new MenuPresenter(loginService, eventbus, menu);
+				menuView = MenuUtil.getMenu(token);
+				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
+				presenter2.go(MyPathsApp.get().getPanelCabecera()
+						.getMenuCabecera());
+				return;
+			}else if (token.equals("Perfil")) {
+				EditProfileView vista = new EditProfileView();
+				presenter = new EditProfilePresenter(loginService, vista,
+						eventbus);
+				presenter.go(MyPathsApp.get().getPanelPrincipal());
+				menuView = MenuUtil.getMenu(token);
+				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
 				return;
 			}
-
 		}
 	}
 
