@@ -3,16 +3,16 @@ package mcm.projects.mypaths.client.service;
 import java.util.List;
 
 import mcm.projects.mypaths.shared.NotLoggedInException;
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("usersService")
 public interface UserService extends RemoteService {
-	void add(Usuario usuario) throws NotLoggedInException;
-	Usuario edit(Usuario usuarioOriginal);
+	void add(UsuarioDTO usuario) throws NotLoggedInException;
+	UsuarioDTO edit(UsuarioDTO usuarioOriginal);
 	void remove(String id); 
-	List<Usuario> getUsuarios();
-	Usuario get(String username);
+	List<UsuarioDTO> getUsuarios();
+	UsuarioDTO get(String username);
 }

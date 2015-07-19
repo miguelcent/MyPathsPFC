@@ -1,0 +1,2 @@
+serviceClass: mcm.projects.mypaths.client.service.UserImageService
+path: A0D44AF021556CFB7666FDEDFB5E32B9.gwt.rpc

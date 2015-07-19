@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @SuppressWarnings("serial")
-public class Usuario implements Serializable{
+public class UsuarioDTO implements Serializable{
 
 	public static final String APELLIDOS = "usuario";
 	public static final String CIUDAD = "ciudad";

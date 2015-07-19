@@ -3,7 +3,7 @@ package mcm.projects.mypaths.client.presenter;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.client.utils.ValidateFormsUtil;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -50,7 +50,7 @@ public class AddPathPresenter implements Presenter {
 	}
 
 	private RutaDTO ruta;
-	private Usuario user;
+	private UsuarioDTO user;
 	private final LoginServiceAsync rpcService;
 	private final SimpleEventBus eventBus;
 	private final Display display;
@@ -60,10 +60,10 @@ public class AddPathPresenter implements Presenter {
 		this.rpcService = rpcService;
 		this.eventBus = eventBus;
 		this.display = display;
-		rpcService.getLoggedInUserDTO(Storage.getSessionStorageIfSupported().getItem("currentUser"), new AsyncCallback<Usuario>() {
+		rpcService.getLoggedInUserDTO(Storage.getSessionStorageIfSupported().getItem("currentUser"), new AsyncCallback<UsuarioDTO>() {
 			
 			@Override
-			public void onSuccess(Usuario result) {
+			public void onSuccess(UsuarioDTO result) {
 				user = result;
 			}
 			

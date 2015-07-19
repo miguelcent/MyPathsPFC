@@ -6,7 +6,7 @@ import java.util.List;
 import mcm.projects.mypaths.client.service.UserService;
 import mcm.projects.mypaths.server.dao.UsuarioDao;
 import mcm.projects.mypaths.shared.NotLoggedInException;
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -16,13 +16,13 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 	
     
 	@Override
-	public void add(Usuario usuarioDTO) throws NotLoggedInException{
+	public void add(UsuarioDTO usuarioDTO) throws NotLoggedInException{
 		UsuarioDao dao = new UsuarioDao();
 		dao.add(usuarioDTO);
 	}
 
 	@Override
-	public Usuario edit(Usuario usuarioOriginal) {
+	public UsuarioDTO edit(UsuarioDTO usuarioOriginal) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -34,15 +34,15 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 	}
 
 	@Override
-	public List<Usuario> getUsuarios() {
+	public List<UsuarioDTO> getUsuarios() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Usuario get(String key) {
+	public UsuarioDTO get(String key) {
 		UsuarioDao dao = new UsuarioDao();
-		Usuario usuario = dao.get(key);
+		UsuarioDTO usuario = dao.get(key);
 		return usuario;
 	}
 

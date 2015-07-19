@@ -5,7 +5,7 @@ import mcm.projects.mypaths.client.service.UserImageService;
 import mcm.projects.mypaths.client.service.UserImageServiceAsync;
 import mcm.projects.mypaths.client.service.UserServiceAsync;
 import mcm.projects.mypaths.shared.dto.UploadedImageDTO;
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -53,7 +53,7 @@ public class RegistroPresenter implements Presenter {
 		FormPanel getFormulario();
 	}
 
-	private Usuario user;
+	private UsuarioDTO user;
 	private final Display display;
 	private final SimpleEventBus eventBus;
 	private final UserServiceAsync rpcService;
@@ -64,7 +64,7 @@ public class RegistroPresenter implements Presenter {
 		this.rpcService = rpcService;
 		this.eventBus = eventBus;
 		this.display = display;
-		user = new Usuario();
+		user = new UsuarioDTO();
 		this.display.getValidationMessages().setText(
 				"Todos los campos, excepto la imagen, son obligatorios");
 		imageService = GWT.create(UserImageService.class);

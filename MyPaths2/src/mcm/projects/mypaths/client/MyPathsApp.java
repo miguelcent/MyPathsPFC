@@ -5,7 +5,7 @@ package mcm.projects.mypaths.client;
 
 import mcm.projects.mypaths.client.service.LoginService;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -37,7 +37,7 @@ public class MyPathsApp implements EntryPoint {
 	RootLayoutPanel root;
 
 	private static MyPathsApp singleton;
-	private Usuario usuarioActual = new Usuario();
+	private UsuarioDTO usuarioActual = new UsuarioDTO();
 	private SimpleEventBus eventBus = new SimpleEventBus();
 	private LoginServiceAsync loginService = GWT.create(LoginService.class);;
 
@@ -96,11 +96,11 @@ public class MyPathsApp implements EntryPoint {
 		return eventBus;
 	}
 
-	public Usuario getUsuarioActual() {
+	public UsuarioDTO getUsuarioActual() {
 		return usuarioActual;
 	}
 
-	public void setUsuarioActual(Usuario currentUser) {
+	public void setUsuarioActual(UsuarioDTO currentUser) {
 		this.usuarioActual = currentUser;
 	}
 

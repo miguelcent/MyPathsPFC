@@ -1,2 +1,2 @@
 serviceClass: mcm.projects.mypaths.client.service.LoginService
-path: 7B55986495EBC6E2C810D60760977F30.gwt.rpc
+path: 169CFD22665AA9C6C3D44103F2E4F1D7.gwt.rpc

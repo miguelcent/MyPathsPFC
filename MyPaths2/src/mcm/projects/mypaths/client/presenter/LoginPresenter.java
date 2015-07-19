@@ -6,7 +6,7 @@ import mcm.projects.mypaths.client.event.RememberEvent;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.client.service.UserService;
 import mcm.projects.mypaths.client.service.UserServiceAsync;
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -36,7 +36,7 @@ public class LoginPresenter implements Presenter {
 		HasClickHandlers getLoginButton();
 	}
 	private Storage sto = Storage.getSessionStorageIfSupported();
-	private Usuario user;
+	private UsuarioDTO user;
 	private final LoginServiceAsync loginService;
 	private final UserServiceAsync userService;
 	private final SimpleEventBus eventBus;
@@ -92,9 +92,9 @@ public class LoginPresenter implements Presenter {
 		
 		if(validate()){
 			String username = display.getUsername().getValue();
-			userService.get(username, new AsyncCallback<Usuario>() {
+			userService.get(username, new AsyncCallback<UsuarioDTO>() {
 				@Override
-				public void onSuccess(Usuario result) {
+				public void onSuccess(UsuarioDTO result) {
 					if(result == null){
 						sto.clear();
 						Window.alert("No existe el usuario. Pruebe de nuevo");

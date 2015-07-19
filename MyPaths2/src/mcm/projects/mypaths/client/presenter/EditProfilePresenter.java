@@ -9,7 +9,7 @@ import mcm.projects.mypaths.client.service.UserService;
 import mcm.projects.mypaths.client.service.UserServiceAsync;
 import mcm.projects.mypaths.client.utils.UtilsImages;
 import mcm.projects.mypaths.shared.dto.UploadedImageDTO;
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -67,8 +67,8 @@ public class EditProfilePresenter implements Presenter {
 
 	private Storage sto = Storage.getSessionStorageIfSupported();
 	private String loggedUsername = sto.getItem("currentUser");
-	private Usuario user;
-	private Usuario newUser;
+	private UsuarioDTO user;
+	private UsuarioDTO newUser;
 	private final Display display;
 	private final SimpleEventBus eventBus;
 	private final LoginServiceAsync rpcService;
@@ -81,8 +81,8 @@ public class EditProfilePresenter implements Presenter {
 		this.rpcService = rpcService;
 		this.eventBus = eventBus;
 		this.display = display;
-		this.user = new Usuario();
-		this.newUser = new Usuario();
+		this.user = new UsuarioDTO();
+		this.newUser = new UsuarioDTO();
 		imageService = GWT.create(UserImageService.class);
 		userService = GWT.create(UserService.class);
 		display.getUsernameInputWidget().setEnabled(false);
@@ -94,8 +94,8 @@ public class EditProfilePresenter implements Presenter {
 	private void iniciando() {
 		if (!(loggedUsername == null || loggedUsername.equals(""))) {
 			rpcService.getLoggedInUserDTO(loggedUsername,
-					new AsyncCallback<Usuario>() {
-						public void onSuccess(Usuario result) {
+					new AsyncCallback<UsuarioDTO>() {
+						public void onSuccess(UsuarioDTO result) {
 							user = result;
 							if (null == user.getUserimageKey()) {
 								EditProfilePresenter.this.display

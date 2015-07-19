@@ -3,7 +3,7 @@ package mcm.projects.mypaths.client.event;
 
 import com.google.gwt.event.shared.GwtEvent;
 
-import mcm.projects.mypaths.shared.dto.Usuario;
+import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 public class LoginEvent extends GwtEvent<LoginEventHandler> {
 	
@@ -11,7 +11,7 @@ public class LoginEvent extends GwtEvent<LoginEventHandler> {
 	private final String username;
 	private final String password;
 	
-	public LoginEvent(Usuario usuario){
+	public LoginEvent(UsuarioDTO usuario){
 		this.username = usuario.getLogin();
 		this.password = usuario.getPassword();
 	}
