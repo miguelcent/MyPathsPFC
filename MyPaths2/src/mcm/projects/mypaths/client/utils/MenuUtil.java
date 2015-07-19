@@ -78,11 +78,13 @@ public class MenuUtil {
 				menuView.getMenuBar().removeItem(menuView.getCerrarSesionLink());
 				menuView.getMenuBar().removeItem(menuView.getPerfilLink());
 				menuView.getMenuBar().removeItem(menuView.getRegistroLink());
+				
 			} else {
 				menuView = new MenuView();
 				menuView.getMenuBar().removeItem(menuView.getBuscarLink());
 				menuView.getMenuBar().removeItem(menuView.getRegistroLink());
-				menuView.getMenuBar().removeItem(menuView.getRegistroLink());
+				menuView.getMenuBar().removeItem(menuView.getLoginLink());
+				menuView.getMenuBar().removeItem(menuView.getPerfilLink());
 			}
 		}
 		return menuView;

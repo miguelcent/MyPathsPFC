@@ -1,4 +1,5 @@
 # Module mypaths2
 # RPC service class, partial path of RPC policy file
-mcm.projects.mypaths.client.service.LoginService, 7B55986495EBC6E2C810D60760977F30.gwt.rpc
-mcm.projects.mypaths.client.service.UserService, 15828834863431E9FF281F8353C60900.gwt.rpc
+mcm.projects.mypaths.client.service.LoginService, E8A55187956D4452E3917607528F2F6A.gwt.rpc
+mcm.projects.mypaths.client.service.UserImageService, A0D44AF021556CFB7666FDEDFB5E32B9.gwt.rpc
+mcm.projects.mypaths.client.service.UserService, FDAC56783EAA224AE7F41F9CFE7AB267.gwt.rpc

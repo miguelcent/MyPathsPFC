@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -17,12 +18,16 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import mcm.projects.mypaths.client.presenter.EditProfilePresenter;
+import mcm.projects.mypaths.client.service.UserImageService;
+import mcm.projects.mypaths.client.service.UserImageServiceAsync;
 
 public class EditProfileView extends Composite implements EditProfilePresenter.Display{
 
 	private static EditProfileViewUiBinder uiBinder = GWT
 			.create(EditProfileViewUiBinder.class);
-
+	
+	UserImageServiceAsync userImageService = GWT.create(UserImageService.class);
+	
 	interface EditProfileViewUiBinder extends UiBinder<Widget, EditProfileView> {
 	}
 	
@@ -85,29 +90,38 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
 	
 	@UiField 
 	FlowPanel image;
+	
+	@UiField
+	FormPanel formulario;
+	
+	@UiField
+	Label validationMessages;
 
 	public EditProfileView() {
 		initWidget(uiBinder.createAndBindUi(this));
-		tituloUsuario.setText("Datos de Usuario");
-		usuarioLabel.setText("Username");
-		usernameInput.getElement().setPropertyString("placeholder", "Nombre de usuario");
-		passwordLabel.setText("Password");
-		passwordInput.getElement().setPropertyString("placeholder", "Password");
-		rePasswordLabel.setText("Re-Password");
-		rePasswordInput.getElement().setPropertyString("placeholder", "Re-Password");
-		tituloDatosPersonales.setText("Datos Personales");
-		emailLabel.setText("Email");
-		emailInput.getElement().setPropertyString("placeholder", "Email");
-		nombreLabel.setText("Nombre");
-		nombreInput.getElement().setPropertyString("placeholder", "Nombre");
-		apellidosLabel.setText("Apellidos");
-		apellidosInput.getElement().setPropertyString("placeholder", "Aoellidos");
-		paisLabel.setText("País");
-		listaPaises.addItem("España");
-		fotoLabel.setText("Foto");
-		fotoUpload.getElement().setPropertyString("placeholder", "Imagen del perfil");
-		fotoUpload.getElement().setPropertyString("accept", "image/x-png, image/gif, image/jpeg");
+		this.tituloUsuario.setText("Datos de Usuario");
+		this.usuarioLabel.setText("Username");
+		this.usernameInput.getElement().setPropertyString("placeholder", "Nombre de usuario");
+		this.passwordLabel.setText("Password");
+		this.passwordInput.getElement().setPropertyString("placeholder", "Password");
+		this.rePasswordLabel.setText("Re-Password");
+		this.rePasswordInput.getElement().setPropertyString("placeholder", "Re-Password");
+		this.tituloDatosPersonales.setText("Datos Personales");
+		this.emailLabel.setText("Email");
+		this.emailInput.getElement().setPropertyString("placeholder", "Email");
+		this.nombreLabel.setText("Nombre");
+		this.nombreInput.getElement().setPropertyString("placeholder", "Nombre");
+		this.apellidosLabel.setText("Apellidos");
+		this.apellidosInput.getElement().setPropertyString("placeholder", "Aoellidos");
+		this.paisLabel.setText("País");
+		this.listaPaises.addItem("España");
+		this.fotoLabel.setText("Foto");
+		this.fotoUpload.getElement().setPropertyString("placeholder", "Imagen del perfil");
+		this.fotoUpload.getElement().setPropertyString("accept", "image/x-png, image/gif, image/jpeg");
+		this.fotoUpload.setName("image");
 		this.editarButton.setText("Editar");
+		this.formulario.setEncoding(FormPanel.ENCODING_MULTIPART);
+		this.formulario.setMethod(FormPanel.METHOD_POST);
 	}
 
 	@Override
@@ -147,7 +161,7 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
 	}
 
 	@Override
-	public HasChangeHandlers getPaisSeleccionado() {
+	public ListBox getPaisSeleccionado() {
 		// TODO Auto-generated method stub
 		return listaPaises;
 	}
@@ -162,6 +176,28 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
 	public FlowPanel getImagenWrapper() {
 		// TODO Auto-generated method stub
 		return image;
+	}
+
+	@Override
+	public TextBox getUsernameInputWidget() {
+		// TODO Auto-generated method stub
+		return usernameInput;
+	}
+
+	@Override
+	public FormPanel getFormulario() {
+		return formulario;
+	}
+	
+	@Override
+	public Label getValidationMessages() {
+		return validationMessages;
+	}
+
+	@Override
+	public FileUpload getFotoUpload() {
+		// TODO Auto-generated method stub
+		return fotoUpload;
 	}
 
 }

@@ -2,22 +2,21 @@ package mcm.projects.mypaths.server.domain;
 
 import java.util.Date;
 import java.util.List;
+
 import com.google.appengine.api.datastore.Key;
 
-public class Ruta{
-
+public class Ruta {
+	
 	private Key key;
 	private String nombre;
 	private Date fechaCreacion;
 	private String textoDescriptivo;
-	
-	private List<Comentario> comentarios;
-	
+	private String mapaKey;
+	private String categoriaKey;
+
 	private Valoracion valoracion;
 	
-	private CategoriaRuta categoria;
-	
-	private Mapa mapa;
+	private List<Comentario> comentarios;
 
 	public String getNombre() {
 		return nombre;
@@ -63,22 +62,20 @@ public class Ruta{
 		this.valoracion = valoracion;
 	}
 
-	public CategoriaRuta getCategoria() {
-		return categoria;
+	public String getMapaKey() {
+		return mapaKey;
 	}
 
-	public void setCategoria(CategoriaRuta categoria) {
-		this.categoria = categoria;
+	public void setMapaKey(String mapaKey) {
+		this.mapaKey = mapaKey;
 	}
 
-	public Mapa getMapa() {
-		return mapa;
+	public String getCategoriaKey() {
+		return categoriaKey;
 	}
 
-	public void setMapa(Mapa mapa) {
-		this.mapa = mapa;
+	public void setCategoriaKey(String categoriaKey) {
+		this.categoriaKey = categoriaKey;
 	}
-	
-	
-	
+
 }

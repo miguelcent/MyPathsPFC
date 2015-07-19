@@ -1,7 +1,7 @@
 package mcm.projects.mypaths.client.presenter;
 
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
-import mcm.projects.mypaths.shared.dto.UsuarioDTO;
+import mcm.projects.mypaths.shared.dto.Usuario;
 
 import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.dom.client.HasClickHandlers;
@@ -21,7 +21,7 @@ public class BusquedaPresenter implements Presenter{
 		Widget asWidget();
 	}
 	
-	private UsuarioDTO user;
+	private Usuario user;
 	private final LoginServiceAsync rpcService;
 	private final SimpleEventBus eventBus;
 	private final Display display;

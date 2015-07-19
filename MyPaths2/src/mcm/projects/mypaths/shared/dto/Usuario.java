@@ -1,60 +1,37 @@
-package mcm.projects.mypaths.server.domain;
+package mcm.projects.mypaths.shared.dto;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
+@SuppressWarnings("serial")
+public class Usuario implements Serializable{
 
-
-
-
-
-
-import javax.jdo.annotations.IdGeneratorStrategy;
-import javax.jdo.annotations.IdentityType;
-import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
-
-import mcm.projects.mypaths.shared.dto.UsuarioDTO;
-
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.datastore.Blob;
-import com.google.appengine.api.datastore.Email;
-import com.google.appengine.api.datastore.Key;
-
-@PersistenceCapable(identityType = IdentityType.APPLICATION)
-public class Usuario{
+	public static final String APELLIDOS = "usuario";
+	public static final String CIUDAD = "ciudad";
+	public static final String CODIGO_POSTAL = "codigo_postal";
+	public static final String EMAIL = "email";
+	public static final String FEC_INGRESO = "fechaIngreso";
+	public static final String USER_IMAGE_KEY = "userImageKey";
+	public static final String LOGIN = "login";
+	public static final String NOMBRE = "nombre";	
+	public static final String PAIS = "pais";	
+	public static final String PASSWORD = "password";
+	public static final String ULTIMO_LOGIN = "ultimoLogin";
+	public static final String ULTIMOLOGOUT = "ultimoLogout";	
 	
-	
-	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Key key;
-	@Persistent
+	private String key;
 	private String login;
-	@Persistent
 	private String password;
-	@Persistent
-	private Email email;
-	@Persistent
+	private String email;
 	private Date fechaIngreso;
-	@Persistent
-	private String nombre;	
-	@Persistent
+	private String nombre;
 	private String apellidos;
-	@Persistent
 	private String ciudad;
-	@Persistent
-	private String codigo_postal;	
-	@Persistent
-	private String pais;	
-	@Persistent
-	private BlobKey imagen_avatar; 
-	@Persistent
-	private Date ultimoLogin;	
-	@Persistent
+	private String codigo_postal;
+	private String pais;
+	private String userImageKey;
+	private Date ultimoLogin;
 	private Date ultimoLogout;
-	@Persistent
-	private List<Ruta> rutas;
 
 	public String getLogin() {
 		return login;
@@ -72,11 +49,11 @@ public class Usuario{
 		this.password = password;
 	}
 
-	public Email getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(Email email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
@@ -128,12 +105,12 @@ public class Usuario{
 		this.pais = pais;
 	}
 
-	public BlobKey getImagen_avatar() {
-		return imagen_avatar;
+	public String getUserimageKey() {
+		return userImageKey;
 	}
 
-	public void setImagen_avatar(BlobKey imagen_avatar) {
-		this.imagen_avatar = imagen_avatar;
+	public void setUserImageKey(String imagen_avatar) {
+		this.userImageKey = imagen_avatar;
 	}
 
 	public Date getUltimoLogin() {
@@ -152,20 +129,12 @@ public class Usuario{
 		this.ultimoLogout = ultimoLogout;
 	}
 
-	public List<Ruta> getRutas() {
-		return rutas;
-	}
-
-	public void setRutas(List<Ruta> rutas) {
-		this.rutas = rutas;
-	}
-
-	public Key getKey() {
+	public String getKey() {
 		return key;
 	}
 
-	public void setKey(Key id) {
+	public void setKey(String id) {
 		this.key = id;
 	}
-	
+
 }

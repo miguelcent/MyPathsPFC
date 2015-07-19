@@ -43,16 +43,14 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 	Label mapaLabel;
 	@UiField
 	FileUpload mapaUpload;
-	
-
-	
-
 	@UiField
 	FlowPanel mapCanvas;
 	@UiField
 	Button botonEnviar;
 	@UiField
 	FormPanel addPathForm;
+	@UiField
+	Label validationMessages;
 
 	public AddPathView() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -67,14 +65,13 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 		descripcionLabel.setText("Descripción ruta (*)");
 		descripcionInput.getElement().setPropertyString("placeholder", "Descripción de la ruta...");
 		botonEnviar.setText("Enviar");
-		addPathForm.setAction("/AddPath");
 		addPathForm.setEncoding(FormPanel.ENCODING_MULTIPART);
 		addPathForm.setMethod(FormPanel.METHOD_POST);
+		mapaUpload.setName("map");
 		mapaUpload.getElement().setAttribute("accept", ".kml");
 		mapCanvas.getElement().setId("map-canvas");
+		validationMessages.setText("");
 	}
-
-	
 
 	@Override
 	public HasValue<String> getTituloInput() {
@@ -111,8 +108,6 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 		return addPathForm;
 	}
 
-
-
 	@Override
 	public FileUpload getFileUpload() {
 		return mapaUpload;
@@ -121,7 +116,14 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 	public void setMapaUpload(FileUpload mapaUpload) {
 		this.mapaUpload = mapaUpload;
 	}
+	
+	@Override
+	public Label getValidationMessages() {
+		return validationMessages;
+	}
 
-
+	public ListBox getCategoriaList() {
+		return categoriaList;
+	}
 	
 }

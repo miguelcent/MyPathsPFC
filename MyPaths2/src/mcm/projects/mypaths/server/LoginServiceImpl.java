@@ -1,40 +1,29 @@
 package mcm.projects.mypaths.server;
 
-import javax.jdo.PersistenceManager;
-
 import mcm.projects.mypaths.client.service.LoginService;
-import mcm.projects.mypaths.server.domain.Usuario;
+import mcm.projects.mypaths.server.dao.UsuarioDao;
 import mcm.projects.mypaths.shared.NotLoggedInException;
-import mcm.projects.mypaths.shared.builder.UsuarioBuilder;
-import mcm.projects.mypaths.shared.dto.UsuarioDTO;
+import mcm.projects.mypaths.shared.dto.Usuario;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")
 public class LoginServiceImpl extends RemoteServiceServlet implements
 		LoginService {
-	public UsuarioDTO loggedInUser = new UsuarioDTO();
+	public Usuario loggedInUser = new Usuario();
+
 	@Override
-	public UsuarioDTO getLoggedInUserDTO(String loggedUsername) {	    
-	    if(loggedUsername==null || loggedUsername==""){
-	    	Window.alert("Error: Usuario no logado");
-	    } else {
-	    	PersistenceManager pm = PMF.get();
-			Usuario user = pm.getObjectById(Usuario.class, loggedUsername);
-			loggedInUser = UsuarioBuilder.getUsuarioDTO(user);
-	    }
-		
+	public Usuario getLoggedInUserDTO(String loggedUsername) {
+		UsuarioDao dao = new UsuarioDao();
+		loggedInUser = dao.get(loggedUsername);
+
 		return loggedInUser;
 	}
 
 	@Override
 	public Boolean logout(String loggedUsername) throws NotLoggedInException {
-		Boolean ret = false;
-		if(!(loggedUsername == null || loggedUsername.equals(""))){
-			ret = true;
-		}
-		return ret;
+		UsuarioDao dao = new UsuarioDao();
+		return dao.logOut(loggedUsername);
 	}
 
 }

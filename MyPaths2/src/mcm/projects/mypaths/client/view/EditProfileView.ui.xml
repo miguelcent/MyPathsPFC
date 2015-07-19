@@ -3,7 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style src="../resources/GlobalStyles.css" />
 	<g:HTMLPanel>
-		<g:FormPanel>
+		<g:FormPanel ui:field="formulario">
 			<g:DecoratorPanel>
 				<g:HorizontalPanel>
 					<g:VerticalPanel>
@@ -40,14 +40,17 @@
 						<g:HorizontalPanel horizontalAlignment="right">
 							<g:Button ui:field="editarButton" styleName="boton"/>
 						</g:HorizontalPanel>
+						<g:Label ui:field="validationMessages" width="400px"></g:Label>
 					</g:VerticalPanel>
 					<g:VerticalPanel horizontalAlignment="ALIGN_CENTER">
 						<g:FlowPanel ui:field="image" width="200px" height="250px" >
 						</g:FlowPanel>
-						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="fotoLabel"/>
-							<g:FileUpload ui:field="fotoUpload"/>
-						</g:HorizontalPanel>
+						
+							<g:HorizontalPanel horizontalAlignment="right">
+								<g:Label ui:field="fotoLabel"/>
+								<g:FileUpload ui:field="fotoUpload"/>
+							</g:HorizontalPanel>
+						
 					</g:VerticalPanel>
 				</g:HorizontalPanel>
 			</g:DecoratorPanel>

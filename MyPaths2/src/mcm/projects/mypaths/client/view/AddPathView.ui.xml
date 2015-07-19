@@ -28,6 +28,7 @@
 								<g:FileUpload ui:field="mapaUpload" width="300px"/>
 							
 						</g:HorizontalPanel>
+						<g:Label ui:field="validationMessages" width="400px"></g:Label>
 						<g:Button ui:field="botonEnviar" />
 					</g:VerticalPanel>
 					<g:FlowPanel ui:field="mapCanvas" width="500px" height="250px">

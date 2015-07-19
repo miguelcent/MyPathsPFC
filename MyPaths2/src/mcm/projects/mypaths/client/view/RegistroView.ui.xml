@@ -38,9 +38,9 @@
 							<g:ListBox ui:field="listaPaises"/>
 						</g:HorizontalPanel>
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="fotoLabel" width="120px"/>
-							<g:FileUpload ui:field="fotoUpload"/>
-						</g:HorizontalPanel>
+						<g:Label ui:field="fotoLabel" width="120px"/>
+						<g:FileUpload ui:field="fotoUpload"/>
+					</g:HorizontalPanel>
 						<g:HorizontalPanel>
 							<g:CheckBox ui:field="chkCondiciones"/>
 							<g:Label ui:field="aceptoTxt" width="65px"/>

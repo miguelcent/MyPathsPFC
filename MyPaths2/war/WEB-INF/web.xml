@@ -25,13 +25,13 @@
   	</servlet-mapping>
   	
   	<servlet>
-		<servlet-name>UploadBlobServlet</servlet-name>
-		<servlet-class>mcm.projects.mypaths.client.service.UploadBlobServlet</servlet-class>
+		<servlet-name>UploadImageBlobServlet</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.UploadImageBlobServlet</servlet-class>
 	</servlet>
   	
   	<servlet-mapping>
-		<servlet-name>UploadBlobServlet</servlet-name>
-		<url-pattern>/uploadblob</url-pattern>
+		<servlet-name>UploadImageBlobServlet</servlet-name>
+		<url-pattern>/uploadimageblob</url-pattern>
 	</servlet-mapping>
 	
   	
@@ -57,13 +57,23 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>imageServiceImpl</servlet-name>
-    <servlet-class>mcm.projects.mypaths.server.ImageServiceImpl</servlet-class>
+    <servlet-name>userImageServiceImpl</servlet-name>
+    <servlet-class>mcm.projects.mypaths.server.UserImageServiceImpl</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>imageServiceImpl</servlet-name>
+    <servlet-name>userImageServiceImpl</servlet-name>
     <url-pattern>/mypaths2/images</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>Serve2</servlet-name>
+    <servlet-class>mcm.projects.mypaths.server.Serve2</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Serve2</servlet-name>
+    <url-pattern>/serve2</url-pattern>
   </servlet-mapping>
 	
   <!-- Default page to serve -->

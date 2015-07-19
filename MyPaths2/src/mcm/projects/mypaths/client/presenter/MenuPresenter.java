@@ -1,19 +1,9 @@
 package mcm.projects.mypaths.client.presenter;
 
 import mcm.projects.mypaths.client.MyPathsApp;
-import mcm.projects.mypaths.client.event.AddPathEvent;
-import mcm.projects.mypaths.client.event.InicioEvent;
-import mcm.projects.mypaths.client.event.LoginEvent;
 import mcm.projects.mypaths.client.event.LogoutEvent;
-import mcm.projects.mypaths.client.helper.RPCCall;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
-import mcm.projects.mypaths.shared.dto.UserAccountDTO;
-import mcm.projects.mypaths.shared.dto.UsuarioDTO;
-
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
@@ -40,7 +30,7 @@ public class MenuPresenter implements Presenter {
 	private final LoginServiceAsync rpcService;
 	private final SimpleEventBus eventBus;
 	private final Display display;
-	private UsuarioDTO usuario= new UsuarioDTO();
+	
 
 	public MenuPresenter(LoginServiceAsync rpcService, SimpleEventBus eventBus,
 			Display display) {
@@ -62,7 +52,7 @@ public class MenuPresenter implements Presenter {
 
 	protected void doLogout() {
 		String logado = Storage.getSessionStorageIfSupported().getItem("currentUser");
-		final Boolean desLogado;
+		
 		rpcService.logout(logado, new AsyncCallback<Boolean>() {
 
 			@Override
@@ -73,7 +63,7 @@ public class MenuPresenter implements Presenter {
 			@Override
 			public void onSuccess(Boolean result) {
 				if(result = true){
-					Window.alert("Usuario "+ Storage.getSessionStorageIfSupported().getItem("currentUser")+"ha cerrado sesión correctamente.");
+					Window.alert("Usuario "+ Storage.getSessionStorageIfSupported().getItem("currentUser")+" ha cerrado sesión correctamente.");
 					Storage.getSessionStorageIfSupported().clear();
 					MyPathsApp.get().setUsuarioActual(null);
 					eventBus.fireEvent(new LogoutEvent());
