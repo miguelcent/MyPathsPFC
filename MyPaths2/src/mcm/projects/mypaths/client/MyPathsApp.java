@@ -7,6 +7,7 @@ import mcm.projects.mypaths.client.service.LoginService;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
+import com.dropbox.core.DbxAppInfo;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
@@ -83,6 +84,10 @@ public class MyPathsApp implements EntryPoint {
 //	}
 
 	public void init() {
+//		final String APP_KEY = "fu1w90i518wx200";
+//        final String APP_SECRET = "4bcxvl0bd3ps0z5";
+//        
+//        DbxAppInfo appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
 		DockLayoutPanel outer = binder.createAndBindUi(this);
 		root = RootLayoutPanel.get();
 		root.clear();

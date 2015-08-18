@@ -4,9 +4,14 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class MapaDTO implements Serializable {
+	
+	public static final String SERVING_URL = "imagenMapa";
+	public static final String TIPO_MAPA = "tipoMapa";
+	
 	public String key;
 	public String imagenMapa;
 	public String tipoMapa;
+	
 	public String getKey() {
 		return key;
 	}

@@ -1,84 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         version="2.5"
-         xmlns="http://java.sun.com/xml/ns/javaee">
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
-  <servlet>
+	<!-- Servlets -->
+	<servlet>
 		<servlet-name>Upload</servlet-name>
 		<servlet-class>mcm.projects.mypaths.client.utils.Upload</servlet-class>
 	</servlet>
-	<servlet>
-	    <servlet-name>Serve</servlet-name>
-	    <servlet-class>mcm.projects.mypaths.client.utils.Serve</servlet-class>
-  	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>Upload</servlet-name>
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Serve</servlet-name>
+		<servlet-class>mcm.projects.mypaths.client.utils.Serve</servlet-class>
+	</servlet>
+
+
 	<servlet-mapping>
-	    <servlet-name>Serve</servlet-name>
-	    <url-pattern>/serve</url-pattern>
-  	</servlet-mapping>
-  	
-  	<servlet>
+		<servlet-name>Serve</servlet-name>
+		<url-pattern>/serve</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>UploadImageBlobServlet</servlet-name>
 		<servlet-class>mcm.projects.mypaths.server.UploadImageBlobServlet</servlet-class>
 	</servlet>
-  	
-  	<servlet-mapping>
+
+	<servlet-mapping>
 		<servlet-name>UploadImageBlobServlet</servlet-name>
 		<url-pattern>/uploadimageblob</url-pattern>
 	</servlet-mapping>
 	
-  	
-  
-  <servlet>
-    <servlet-name>LoginServiceImpl</servlet-name>
-    <servlet-class>mcm.projects.mypaths.server.LoginServiceImpl</servlet-class>
-  </servlet>
+	<servlet>
+		<servlet-name>UploadMapServlet</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.UploadMapServlet</servlet-class>
+	</servlet>
 
-  <servlet-mapping>
-    <servlet-name>LoginServiceImpl</servlet-name>
-    <url-pattern>/mypaths2/loginservice</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>userServiceImpl</servlet-name>
-    <servlet-class>mcm.projects.mypaths.server.UserServiceImpl</servlet-class>
-  </servlet>
+	<servlet-mapping>
+		<servlet-name>UploadMapServlet</servlet-name>
+		<url-pattern>/uploadMap</url-pattern>
+	</servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>userServiceImpl</servlet-name>
-    <url-pattern>/mypaths2/usersService</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>userImageServiceImpl</servlet-name>
-    <servlet-class>mcm.projects.mypaths.server.UserImageServiceImpl</servlet-class>
-  </servlet>
+	<servlet>
+		<servlet-name>Serve2</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.Serve2</servlet-class>
+	</servlet>
 
-  <servlet-mapping>
-    <servlet-name>userImageServiceImpl</servlet-name>
-    <url-pattern>/mypaths2/images</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-    <servlet-name>Serve2</servlet-name>
-    <servlet-class>mcm.projects.mypaths.server.Serve2</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>Serve2</servlet-name>
-    <url-pattern>/serve2</url-pattern>
-  </servlet-mapping>
-	
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>MyPathsApp.html</welcome-file>
-  </welcome-file-list>
+	<servlet-mapping>
+		<servlet-name>Serve2</servlet-name>
+		<url-pattern>/serve2</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LoginServiceImpl</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.LoginServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginServiceImpl</servlet-name>
+		<url-pattern>/mypaths2/loginservice</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>userServiceImpl</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.UserServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userServiceImpl</servlet-name>
+		<url-pattern>/mypaths2/usersService</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>userImageServiceImpl</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.UserImageServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>userImageServiceImpl</servlet-name>
+		<url-pattern>/mypaths2/images</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>mapaServiceImpl</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.MapaServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>mapaServiceImpl</servlet-name>
+		<url-pattern>/mypaths2/maps</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>rutaServiceImpl</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.RutaServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>rutaServiceImpl</servlet-name>
+		<url-pattern>/mypaths2/rutaService</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>MyPathsApp.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>

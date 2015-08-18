@@ -1,0 +1,2 @@
+serviceClass: mcm.projects.mypaths.client.service.RutaService
+path: 733E5264BBB72508A9245E6DD861A52B.gwt.rpc

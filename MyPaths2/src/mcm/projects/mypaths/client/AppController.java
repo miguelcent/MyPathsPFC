@@ -177,8 +177,6 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter = new AddPathPresenter(loginService, eventbus,
 						vista);
 				presenter.go(MyPathsApp.get().getPanelPrincipal());
-				
-				MapsUtils.pintarMapaDefecto(vista);
 				menuView = MenuUtil.getMenu(token);
 				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()

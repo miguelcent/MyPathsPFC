@@ -1,5 +1,6 @@
 package mcm.projects.mypaths.client.utils;
 
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.maps.gwt.client.GoogleMap;
 import com.google.maps.gwt.client.LatLng;
 import com.google.maps.gwt.client.MapOptions;
@@ -10,7 +11,7 @@ import mcm.projects.mypaths.client.view.AddPathView;
 
 public class MapsUtils {
 	
-	public static void pintarMapaDefecto(AddPathView vista){
+	public static void pintarMapaDefecto(FlowPanel vista){
 		LatLng sevilla = LatLng.create(37.388096, -5.982330);
 	    MapOptions options = MapOptions.create();
 	    options.setZoom(12);
@@ -19,7 +20,7 @@ public class MapsUtils {
 	    options.setMapTypeControl(true);
 	    options.setScaleControl(true);
 	    options.setScrollwheel(true);
-	    GoogleMap gMap = GoogleMap.create(vista.getMapCanvas().getElement(), options);
+	    GoogleMap gMap = GoogleMap.create(vista.getElement(), options);
 	    gMap.setCenter(sevilla);
 	    Marker marker = Marker.create();
 	    marker.setPosition(sevilla);

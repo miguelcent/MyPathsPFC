@@ -4,7 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class RutaDTO implements Serializable {
-
+	
+	public static final String NOMBRE = "nombre";
+	public static final String FEC_CREACION = "fechaCreacion";
+	public static final String DESCRIPCION = "descripcion";
+	public static final String MAPA_KEY = "mapaKey";
+	public static final String CATEGORIA_KEY = "categoriaKey";
+	public static final String USUARIO_KEY = "usuarioKey";
+	
 	/**
 	 * 
 	 */

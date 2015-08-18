@@ -15,11 +15,9 @@ import com.google.appengine.api.datastore.KeyFactory;
 
 public class UsuarioDao {
 	DatastoreService datastore;
-	UsuarioDTO loggedInUser;
 
 	public UsuarioDao() {
 		datastore = DatastoreServiceFactory.getDatastoreService();
-		loggedInUser = new UsuarioDTO();
 	}
 
 	public UsuarioDTO get(String encodedKey) {

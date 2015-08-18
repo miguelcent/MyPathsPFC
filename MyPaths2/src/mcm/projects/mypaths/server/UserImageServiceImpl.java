@@ -36,7 +36,7 @@ public class UserImageServiceImpl extends RemoteServiceServlet implements UserIm
 		List<UploadedImageDTO> images = dao.getRecent(); 
 		return images;
 	}
-
+//TODO no hay UserService que valga de google.
 	@Override
 	public void deleteImage(String key) {
 		UserService userService = UserServiceFactory.getUserService();

@@ -1,0 +1,2 @@
+serviceClass: mcm.projects.mypaths.client.service.MapaService
+path: CC776B9A25FDEAB862A985749C497992.gwt.rpc
