@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import mcm.projects.mypaths.server.domain.TiposMapa;
+import mcm.projects.mypaths.shared.TiposMapa;
 import mcm.projects.mypaths.shared.dto.MapaDTO;
 
 import com.google.appengine.api.blobstore.BlobKey;

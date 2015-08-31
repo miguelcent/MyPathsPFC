@@ -2,55 +2,56 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style src="../resources/GlobalStyles.css" />
+	
 	<g:HTMLPanel>
 		<g:FormPanel ui:field="formulario">
 			<g:DecoratorPanel>
 				<g:HorizontalPanel>
 					<g:VerticalPanel>
-						<g:Label ui:field="tituloUsuario" width="120px"/>
+						<g:Label ui:field="tituloUsuario" width="120px" />
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="usuarioLabel" width="120px"/>
-							<g:TextBox ui:field="usernameInput"/>				
+							<g:Label ui:field="usuarioLabel" width="120px" />
+							<g:TextBox ui:field="usernameInput" />
 						</g:HorizontalPanel>
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="passwordLabel" width="120px"/>
-							<g:PasswordTextBox ui:field="passwordInput"/>
+							<g:Label ui:field="passwordLabel" width="120px" />
+							<g:PasswordTextBox ui:field="passwordInput" />
 						</g:HorizontalPanel>
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="rePasswordLabel" width="120px"/>
-							<g:PasswordTextBox ui:field="rePasswordInput"/>
+							<g:Label ui:field="rePasswordLabel" width="120px" />
+							<g:PasswordTextBox ui:field="rePasswordInput" />
 						</g:HorizontalPanel>
-						<g:Label ui:field="tituloDatosPersonales" width="120px"/>
+						<g:Label ui:field="tituloDatosPersonales" width="120px" />
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="emailLabel" width="120px"/>
-							<g:TextBox ui:field="emailInput"/>
-						</g:HorizontalPanel>
-						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="nombreLabel" width="120px"/>
-							<g:TextBox ui:field="nombreInput"/>
+							<g:Label ui:field="emailLabel" width="120px" />
+							<g:TextBox ui:field="emailInput" />
 						</g:HorizontalPanel>
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="apellidosLabel" width="120px"/>
-							<g:TextBox ui:field="apellidosInput"/>
+							<g:Label ui:field="nombreLabel" width="120px" />
+							<g:TextBox ui:field="nombreInput" />
 						</g:HorizontalPanel>
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Label ui:field="paisLabel" width="120px"/>
-							<g:ListBox ui:field="listaPaises"/>
+							<g:Label ui:field="apellidosLabel" width="120px" />
+							<g:TextBox ui:field="apellidosInput" />
 						</g:HorizontalPanel>
 						<g:HorizontalPanel horizontalAlignment="right">
-							<g:Button ui:field="editarButton" styleName="boton"/>
+							<g:Label ui:field="paisLabel" width="120px" />
+							<g:ListBox ui:field="listaPaises" />
+						</g:HorizontalPanel>
+						<g:HorizontalPanel horizontalAlignment="right">
+							<g:Button ui:field="editarButton" styleName="boton" />
 						</g:HorizontalPanel>
 						<g:Label ui:field="validationMessages" width="400px"></g:Label>
 					</g:VerticalPanel>
 					<g:VerticalPanel horizontalAlignment="ALIGN_CENTER">
-						<g:FlowPanel ui:field="image" width="200px" height="250px" >
+						<g:FlowPanel ui:field="image" width="200px" height="250px">
 						</g:FlowPanel>
-						
-							<g:HorizontalPanel horizontalAlignment="right">
-								<g:Label ui:field="fotoLabel"/>
-								<g:FileUpload ui:field="fotoUpload"/>
-							</g:HorizontalPanel>
-						
+
+						<g:HorizontalPanel horizontalAlignment="right">
+							<g:Label ui:field="fotoLabel" />
+							<g:FileUpload ui:field="fotoUpload" />
+						</g:HorizontalPanel>
+
 					</g:VerticalPanel>
 				</g:HorizontalPanel>
 			</g:DecoratorPanel>

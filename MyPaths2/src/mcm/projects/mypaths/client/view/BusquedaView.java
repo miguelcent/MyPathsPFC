@@ -33,11 +33,12 @@ public class BusquedaView extends Composite implements BusquedaPresenter.Display
 		initWidget(uiBinder.createAndBindUi(this));
 
 		this.inputBusqueda.getElement().setPropertyString("placeholder", "Introduce el texto de busqueda");
-		this.listaCategorias.addItem("Ciclista");
-		this.listaCategorias.addItem("Gastronómica");
-		this.listaCategorias.addItem("Turística");
+		this.listaCategorias.addItem("Ciclismo");
+		this.listaCategorias.addItem("Gastronomica");
+		this.listaCategorias.addItem("Turistica");
 		this.listaCategorias.addItem("Senderismo");
 		this.listaCategorias.addItem("Running");
+		this.listaCategorias.setSelectedIndex(0);
 	}
 
 	public void setListaCategorias(ListBox listaCategorias) {

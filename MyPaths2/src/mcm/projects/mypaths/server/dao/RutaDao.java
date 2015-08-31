@@ -4,11 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import mcm.projects.mypaths.shared.dto.RutaDTO;
-import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
@@ -26,9 +24,9 @@ public class RutaDao {
 		Key key = KeyFactory.stringToKey(encodedKey);
 		try {
 			Entity result = datastore.get(key);
-			RutaDTO usuario = fromEntity(result);
-			usuario.setKey(encodedKey);
-			return usuario;
+			RutaDTO ruta = fromEntity(result);
+			ruta.setKey(encodedKey);
+			return ruta;
 		} catch (EntityNotFoundException e) {
 			return null;
 		}
@@ -63,7 +61,17 @@ public class RutaDao {
 	}
 
 	private RutaDTO fromEntity(Entity result) {
-		// TODO Auto-generated method stub
-		return null;
+		RutaDTO ruta = new RutaDTO();
+		ruta.setCategoriaKey((String)result.getProperty(RutaDTO.CATEGORIA_KEY));
+		ruta.setDescripcion((String)result.getProperty(RutaDTO.DESCRIPCION));
+		ruta.setFechaCreacion((Date)result.getProperty(RutaDTO.FEC_CREACION));
+		if(ruta.getKey() == null){
+			String encodedKey = KeyFactory.keyToString(result.getKey());
+			ruta.setKey(encodedKey);
+		}
+		ruta.setMapaKey((String)result.getProperty(RutaDTO.MAPA_KEY));
+		ruta.setNombre((String)result.getProperty(RutaDTO.NOMBRE));
+		ruta.setUsuarioKey((String)result.getProperty(RutaDTO.USUARIO_KEY));
+		return ruta;
 	}
 }

@@ -1,0 +1,2 @@
+serviceClass: mcm.projects.mypaths.client.service.UploadCategoriaRutas
+path: 8EE3006DA69D23FC83F61371D6FB8AAA.gwt.rpc

@@ -11,6 +11,9 @@
     	<g:center>
     		<g:HTMLPanel>
     			<div align="center">
+   					<g:VerticalPanel ui:field='panelBuscar' />
+   				</div>
+    			<div align="center">
    					<g:VerticalPanel ui:field='panelPrincipal' />
    				</div>
    			</g:HTMLPanel>

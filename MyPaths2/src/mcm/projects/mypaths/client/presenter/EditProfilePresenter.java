@@ -97,7 +97,7 @@ public class EditProfilePresenter implements Presenter {
 					new AsyncCallback<UsuarioDTO>() {
 						public void onSuccess(UsuarioDTO result) {
 							user = result;
-							if (null == user.getUserimageKey()) {
+							if (null == user.getUserimageKey() || user.getUserimageKey().equals("")) {
 								EditProfilePresenter.this.display
 										.getImagenWrapper().add(
 												UtilsImages

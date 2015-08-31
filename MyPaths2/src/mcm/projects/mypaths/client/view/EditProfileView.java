@@ -1,7 +1,6 @@
 package mcm.projects.mypaths.client.view;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -115,6 +114,7 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
 		this.apellidosInput.getElement().setPropertyString("placeholder", "Aoellidos");
 		this.paisLabel.setText("País");
 		this.listaPaises.addItem("España");
+		this.listaPaises.setSelectedIndex(0);
 		this.fotoLabel.setText("Foto");
 		this.fotoUpload.getElement().setPropertyString("placeholder", "Imagen del perfil");
 		this.fotoUpload.getElement().setPropertyString("accept", "image/x-png, image/gif, image/jpeg");
@@ -126,61 +126,51 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
 
 	@Override
 	public HasValue<String> getUserNameInput() {
-		// TODO Auto-generated method stub
 		return usernameInput;
 	}
 
 	@Override
 	public HasValue<String> getPasswordInput() {
-		// TODO Auto-generated method stub
 		return passwordInput;
 	}
 
 	@Override
 	public HasValue<String> getRePasswordInput() {
-		// TODO Auto-generated method stub
 		return rePasswordInput;
 	}
 
 	@Override
 	public HasValue<String> getEmailInput() {
-		// TODO Auto-generated method stub
 		return emailInput;
 	}
 
 	@Override
 	public HasValue<String> getNombreInput() {
-		// TODO Auto-generated method stub
 		return nombreInput;
 	}
 
 	@Override
 	public HasValue<String> getApellidosInput() {
-		// TODO Auto-generated method stub
 		return apellidosInput;
 	}
 
 	@Override
 	public ListBox getPaisSeleccionado() {
-		// TODO Auto-generated method stub
 		return listaPaises;
 	}
 
 	@Override
 	public HasClickHandlers getBotonEditar() {
-		// TODO Auto-generated method stub
 		return editarButton;
 	}
 
 	@Override
 	public FlowPanel getImagenWrapper() {
-		// TODO Auto-generated method stub
 		return image;
 	}
 
 	@Override
 	public TextBox getUsernameInputWidget() {
-		// TODO Auto-generated method stub
 		return usernameInput;
 	}
 
@@ -196,7 +186,6 @@ public class EditProfileView extends Composite implements EditProfilePresenter.D
 
 	@Override
 	public FileUpload getFotoUpload() {
-		// TODO Auto-generated method stub
 		return fotoUpload;
 	}
 

@@ -1,10 +1,8 @@
-package mcm.projects.mypaths.server.domain;
+package mcm.projects.mypaths.shared;
 
 public enum TiposMapa {
-	
 	UNDEFINED,
 	KML,
 	GPX,
 	KMZ
-	
 }

@@ -3,13 +3,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" output="test-classes" path="test"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (2)"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-api-1.7.12.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/slf4j-log4j12-1.7.12.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-maps.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/dropbox-core-sdk-1.7.7.jar"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT (1)"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

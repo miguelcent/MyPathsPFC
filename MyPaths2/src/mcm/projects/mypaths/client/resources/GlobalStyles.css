@@ -5,6 +5,18 @@
 /* 	background-image: url("mapa_fondo_fuente.PNG"); */
 }
 
+.rutaItemContainer{
+	background-color:white;
+	width:600px;
+}
+
+.rutaItemNombre{
+	width:80%;
+	color:blue;
+	padding-right:10px;
+	font-size: 18px;
+}
+
 .boton {
     font-family: 'Segoe UI', 'Open Sans', Arial, sans-serif;
     display: block;

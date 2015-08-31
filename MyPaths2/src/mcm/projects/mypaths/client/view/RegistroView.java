@@ -118,6 +118,7 @@ public class RegistroView extends Composite implements RegistroPresenter.Display
 		this.apellidosInput.getElement().setPropertyString("placeholder", "Apellidos");
 		this.paisLabel.setText("País");
 		this.listaPaises.addItem("España");
+		this.listaPaises.setSelectedIndex(0);
 		this.fotoLabel.setText("Foto");
 		this.fotoUpload.getElement().setPropertyString("placeholder", "Imagen del perfil");
 		this.fotoUpload.setName("image");

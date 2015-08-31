@@ -105,6 +105,29 @@
 		<servlet-name>rutaServiceImpl</servlet-name>
 		<url-pattern>/mypaths2/rutaService</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	
+	<servlet>
+		<servlet-name>uploadCategoriaRutasImpl</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.UploadCategoriaRutasImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>uploadCategoriaRutasImpl</servlet-name>
+		<url-pattern>/mypaths2/uploadCategoriaRutas</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>categoriaRutaServiceImpl</servlet-name>
+		<servlet-class>mcm.projects.mypaths.server.CategoriaRutaServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>categoriaRutaServiceImpl</servlet-name>
+		<url-pattern>/mypaths2/categoriaRutaService</url-pattern>
+	</servlet-mapping>
 
 	<!-- Default page to serve -->
 	<welcome-file-list>

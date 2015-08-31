@@ -22,9 +22,11 @@ public interface ResourcesBundle extends ClientBundle {
 
 	@Source("compartir-facebook.png")
 	ImageResource compartirFacebook();
-
+	
+	@Source("editar.png")
 	ImageResource editar();
-
+	
+	@Source("eliminar.png")
 	ImageResource eliminar();
 
 	@Source("gastronomico-blue.png")
@@ -64,9 +66,7 @@ public interface ResourcesBundle extends ClientBundle {
 	@Source("blank_profile.gif")
 	ImageResource profileBlank();
 
+	@Source("verMapa.png")
 	ImageResource verMapa();
-	
-//	@Source("GlobalStyles.css")
-//	GlobalStyles globalStyles();
 
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class UsuarioDTO implements Serializable{
 
-	public static final String APELLIDOS = "usuario";
+	public static final String APELLIDOS = "apellidos";
 	public static final String CIUDAD = "ciudad";
 	public static final String CODIGO_POSTAL = "codigo_postal";
 	public static final String EMAIL = "email";

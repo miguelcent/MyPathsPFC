@@ -6,6 +6,9 @@ import com.google.appengine.api.blobstore.BlobKey;
 
 @SuppressWarnings("serial")
 public class CategoriaRutaDTO implements Serializable{
+	public static final String IMAGEN = "imagenCategoria";
+	public static final String NOMBRE = "nombreCategoria";
+	
 	public String key;
 	public String nombreCategoria;
 	public String imagenCategoria;
@@ -27,5 +30,11 @@ public class CategoriaRutaDTO implements Serializable{
 	}
 	public void setImagenCategoria(String imagenCategoria) {
 		this.imagenCategoria = imagenCategoria;
+	}
+	
+	public String toString(){
+		String str = "Cattegoria:  \n key: "+this.key+"\n imagen: "+this.getImagenCategoria()+"\n nombre: "+this.nombreCategoria;
+		
+		return str;
 	}
 }

@@ -2,6 +2,9 @@ package mcm.projects.mypaths.client.presenter;
 
 import java.util.Date;
 
+import mcm.projects.mypaths.client.event.InicioEvent;
+import mcm.projects.mypaths.client.service.CategoriaRutaService;
+import mcm.projects.mypaths.client.service.CategoriaRutaServiceAsync;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.client.service.MapaService;
 import mcm.projects.mypaths.client.service.MapaServiceAsync;
@@ -9,6 +12,7 @@ import mcm.projects.mypaths.client.service.RutaService;
 import mcm.projects.mypaths.client.service.RutaServiceAsync;
 import mcm.projects.mypaths.client.utils.MapsUtils;
 import mcm.projects.mypaths.client.utils.ValidateFormsUtil;
+import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.MapaDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
@@ -55,7 +59,7 @@ public class AddPathPresenter implements Presenter {
 		Widget asWidget();
 
 		Label getValidationMessages();
-		
+
 		ListBox getCategoriaList();
 	}
 
@@ -65,6 +69,7 @@ public class AddPathPresenter implements Presenter {
 	private final SimpleEventBus eventBus;
 	private final MapaServiceAsync mapaService;
 	private final RutaServiceAsync rutaService;
+	private final CategoriaRutaServiceAsync categoriaService;
 	private final Display display;
 
 	public AddPathPresenter(LoginServiceAsync rpcService,
@@ -75,14 +80,16 @@ public class AddPathPresenter implements Presenter {
 		MapsUtils.pintarMapaDefecto(this.display.getMapCanvas());
 		mapaService = GWT.create(MapaService.class);
 		rutaService = GWT.create(RutaService.class);
-		
-		rpcService.getLoggedInUserDTO(Storage.getSessionStorageIfSupported().getItem("currentUser"), new AsyncCallback<UsuarioDTO>() {
-			
+		categoriaService = GWT.create(CategoriaRutaService.class);
+
+		rpcService.getLoggedInUserDTO(Storage.getSessionStorageIfSupported()
+				.getItem("currentUser"), new AsyncCallback<UsuarioDTO>() {
+
 			@Override
 			public void onSuccess(UsuarioDTO result) {
 				user = result;
 			}
-			
+
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("no hay usuario logado");
@@ -122,37 +129,38 @@ public class AddPathPresenter implements Presenter {
 				}
 			}
 		});
-		
-		display.getFormPanel().addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
-			
-			@Override
-			public void onSubmitComplete(SubmitCompleteEvent event) {
-				startMapUploadSession();
-				String key = event.getResults();
-				Window.alert(key+display.getFileUpload().getFilename());
-				if(!(null == key || key.equals(""))){
-					mapaService.get(key, new AsyncCallback<MapaDTO>() {
 
-						@Override
-						public void onFailure(Throwable caught) {
-							Window.alert("Error al traerse mapa de BBDD");
+		display.getFormPanel().addSubmitCompleteHandler(
+				new FormPanel.SubmitCompleteHandler() {
+
+					@Override
+					public void onSubmitComplete(SubmitCompleteEvent event) {
+						startMapUploadSession();
+						String key = event.getResults();
+						Window.alert(key
+								+ display.getFileUpload().getFilename());
+						if (!(null == key || key.equals(""))) {
+							mapaService.get(key, new AsyncCallback<MapaDTO>() {
+
+								@Override
+								public void onFailure(Throwable caught) {
+									Window.alert("Error al traerse mapa de BBDD");
+								}
+
+								@Override
+								public void onSuccess(MapaDTO mapaDTO) {
+									doAdd(mapaDTO);
+								}
+							});
+						} else {
+							Window.alert("No se ha podido subir el mapa");
 						}
 
-						@Override
-						public void onSuccess(MapaDTO mapaDTO) {
-							String mapaKey = mapaDTO.getKey();
-							doAdd(mapaKey);
-						}
-					});
-				} else {
-					Window.alert("No se ha podido subir el mapa");
-				}
-				
-			}
-		});
-		
+					}
+				});
+
 		display.getFormPanel().addSubmitHandler(new FormPanel.SubmitHandler() {
-			
+
 			@Override
 			public void onSubmit(SubmitEvent event) {
 				String mensaje = display.getFileUpload().getFilename();
@@ -161,15 +169,34 @@ public class AddPathPresenter implements Presenter {
 		});
 	}
 
-	protected void doAdd(String mapaKey) {
-		ruta = new RutaDTO();
-		ruta.setNombre(display.getTituloInput().getValue().trim());
-		ruta.setDescripcion(display.getDescripcionInput()
-				.getValue().trim());
-		ruta.setMapaKey(mapaKey);
-		ruta.setUsuarioKey(user.getKey());
-		ruta.setFechaCreacion(new Date());
-		ruta.setCategoriaKey(display.getCategoriaList().getValue(display.getCategoriaList().getSelectedIndex()));
+	protected void doAdd(MapaDTO mapaDTO) {
+		final String categoriaSeleccionada = display.getCategoriaList().getValue(display.getCategoriaList().getSelectedIndex());
+		final String key = mapaDTO.getKey();
+		categoriaService.getCategoriaFromKey(categoriaSeleccionada, new AsyncCallback<CategoriaRutaDTO>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("No se puede recuperar la categoria de Datastore. Lo siento.");
+			}
+
+			@Override
+			public void onSuccess(CategoriaRutaDTO result) {
+				ruta = new RutaDTO();
+				ruta.setNombre(display.getTituloInput().getValue().trim());
+				ruta.setDescripcion(display.getDescripcionInput()
+						.getValue().trim());
+				ruta.setMapaKey(key);
+				ruta.setUsuarioKey(user.getKey());
+				ruta.setFechaCreacion(new Date());
+				ruta.setCategoriaKey(result.getKey());
+				addRuta();
+			}
+		});
+		
+		
+	}
+	
+	public void addRuta(){
 		rutaService.add(ruta, new AsyncCallback<Void>() {
 
 			@Override
@@ -180,10 +207,11 @@ public class AddPathPresenter implements Presenter {
 			@Override
 			public void onSuccess(Void result) {
 				Window.alert("Ruta dada de alta perfectamente");
+				eventBus.fireEvent(new InicioEvent());
 			}
 		});
 	}
-
+	
 	@Override
 	public void go(HasWidgets container) {
 		container.clear();

@@ -47,25 +47,6 @@ public class UsuarioDao {
 		datastore.put(entity);
 	}
 	
-	private Entity fromDto(UsuarioDTO usuario) {
-		Entity entity = new Entity("Usuario", usuario.getLogin());
-		entity.setProperty(UsuarioDTO.APELLIDOS, usuario.getApellidos());
-		entity.setProperty(UsuarioDTO.CIUDAD, usuario.getCiudad());
-		entity.setProperty(UsuarioDTO.CODIGO_POSTAL, usuario.getCodigo_postal());
-		Email em = new Email(usuario.getEmail());
-		entity.setProperty(UsuarioDTO.EMAIL, em);
-		entity.setProperty(UsuarioDTO.FEC_INGRESO, usuario.getFechaIngreso());
-		entity.setProperty(UsuarioDTO.LOGIN, usuario.getLogin());
-		entity.setProperty(UsuarioDTO.NOMBRE, usuario.getNombre());
-		entity.setProperty(UsuarioDTO.PAIS, usuario.getPais());
-		entity.setProperty(UsuarioDTO.PASSWORD, usuario.getPassword());
-		entity.setProperty(UsuarioDTO.ULTIMO_LOGIN, usuario.getUltimoLogin());
-		entity.setProperty(UsuarioDTO.ULTIMOLOGOUT, usuario.getUltimoLogout());
-		entity.setProperty(UsuarioDTO.USER_IMAGE_KEY, usuario.getUserimageKey());
-		return entity;
-
-	}
-
 	private UsuarioDTO fromEntity(Entity result) {
 		UsuarioDTO usuario = new UsuarioDTO();
 		usuario.setApellidos((String)result.getProperty(UsuarioDTO.APELLIDOS));
@@ -87,6 +68,27 @@ public class UsuarioDao {
 
 		return usuario;
 	}
+	
+	private Entity fromDto(UsuarioDTO usuario) {
+		Entity entity = new Entity("Usuario", usuario.getLogin());
+		entity.setProperty(UsuarioDTO.APELLIDOS, usuario.getApellidos());
+		entity.setProperty(UsuarioDTO.CIUDAD, usuario.getCiudad());
+		entity.setProperty(UsuarioDTO.CODIGO_POSTAL, usuario.getCodigo_postal());
+		Email em = new Email(usuario.getEmail());
+		entity.setProperty(UsuarioDTO.EMAIL, em);
+		entity.setProperty(UsuarioDTO.FEC_INGRESO, usuario.getFechaIngreso());
+		entity.setProperty(UsuarioDTO.LOGIN, usuario.getLogin());
+		entity.setProperty(UsuarioDTO.NOMBRE, usuario.getNombre());
+		entity.setProperty(UsuarioDTO.PAIS, usuario.getPais());
+		entity.setProperty(UsuarioDTO.PASSWORD, usuario.getPassword());
+		entity.setProperty(UsuarioDTO.ULTIMO_LOGIN, usuario.getUltimoLogin());
+		entity.setProperty(UsuarioDTO.ULTIMOLOGOUT, usuario.getUltimoLogout());
+		entity.setProperty(UsuarioDTO.USER_IMAGE_KEY, usuario.getUserimageKey());
+		return entity;
+
+	}
+
+	
 	
 	
 }

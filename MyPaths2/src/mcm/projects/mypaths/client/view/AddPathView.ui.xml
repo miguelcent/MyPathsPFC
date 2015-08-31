@@ -1,7 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui"
-	xmlns:m="urn:import:com.google.maps.gwt.client">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:m="urn:import:com.google.maps.gwt.client">
 	<ui:style>
 	
 	</ui:style>
@@ -10,32 +9,38 @@
 			<g:DecoratorPanel>
 				<g:HorizontalPanel>
 					<g:VerticalPanel>
+					
 						<g:HorizontalPanel>
-							<g:Label ui:field="tituloLabel" width="120px"/>
-							<g:TextBox ui:field="tituloInput" width="300px"/>
+							<g:Label ui:field="tituloLabel" width="120px" />
+							<g:TextBox ui:field="tituloInput" width="300px" />
 						</g:HorizontalPanel>
+						
 						<g:HorizontalPanel>
-							<g:Label ui:field="categoriaLabel" width="120px"/>
-							<g:ListBox ui:field="categoriaList" width="300px"/>
+							<g:Label ui:field="categoriaLabel" width="120px" />
+							<g:ListBox ui:field="categoriaList" width="300px" />
 						</g:HorizontalPanel>
+						
 						<g:HorizontalPanel>
-							<g:Label ui:field="descripcionLabel" width="120px"/>
-							<g:TextArea ui:field="descripcionInput" width="300px" height="180px"/>
+							<g:Label ui:field="descripcionLabel" width="120px" />
+							<g:TextArea ui:field="descripcionInput" width="300px"
+								height="180px" />
 						</g:HorizontalPanel>
+						
 						<g:HorizontalPanel>
-							
-								<g:Label ui:field="mapaLabel" width="120px"/>
-								<g:FileUpload ui:field="mapaUpload" width="300px"/>
-							
+							<g:Label ui:field="mapaLabel" width="120px" />
+							<g:FileUpload ui:field="mapaUpload" width="300px" />
 						</g:HorizontalPanel>
+						
 						<g:Label ui:field="validationMessages" width="400px"></g:Label>
+						
 						<g:Button ui:field="botonEnviar" />
+						
 					</g:VerticalPanel>
 					<g:FlowPanel ui:field="mapCanvas" width="500px" height="250px">
-					
+
 					</g:FlowPanel>
-						
-						
+
+
 				</g:HorizontalPanel>
 			</g:DecoratorPanel>
 		</g:FormPanel>

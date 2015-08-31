@@ -1,0 +1,39 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with field='res' type='mcm.projects.mypaths.client.resources.ResourcesBundle'></ui:with>
+	<ui:style src="../../resources/GlobalStyles.css" />
+	<g:HTMLPanel>
+		<div align="center" style="background-color:white;" width="600px">
+			<g:DecoratorPanel >
+				<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+					<g:HorizontalPanel>
+						<g:Label ui:field="tituloLabel" styleName='{style.rutaItemNombre}'></g:Label>
+						<g:HorizontalPanel ui:field="otherUser">
+							<g:Label>De</g:Label>
+							<g:Hyperlink ui:field="userLink" />
+						</g:HorizontalPanel>
+						<g:HorizontalPanel ui:field="ownUser">
+							<g:PushButton ui:field="editButton" width="18px">  
+								<g:upFace image="{res.editar}"/>
+							</g:PushButton>
+							<g:PushButton ui:field="deleteButton" width="18px">
+								<g:upFace image="{res.eliminar}"/>
+							</g:PushButton>
+						</g:HorizontalPanel>
+					</g:HorizontalPanel>
+						
+					<g:HorizontalPanel>
+						<g:FlowPanel ui:field="imageCategoryWrapper" width="40px" height="40px">
+						</g:FlowPanel>
+						<g:Label ui:field="tituloCategoria"></g:Label>
+						<g:Label ui:field="ownRuta">Mis Rutas</g:Label>
+						<g:PushButton ui:field="viewButton" width="18px">
+							<g:upFace image="{res.verMapa}"/>
+						</g:PushButton>
+					</g:HorizontalPanel>
+				</g:VerticalPanel>
+			</g:DecoratorPanel>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

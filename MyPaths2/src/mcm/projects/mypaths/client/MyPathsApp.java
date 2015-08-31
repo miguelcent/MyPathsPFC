@@ -3,17 +3,33 @@
  */
 package mcm.projects.mypaths.client;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+import mcm.projects.mypaths.client.service.CategoriaRutaService;
+import mcm.projects.mypaths.client.service.CategoriaRutaServiceAsync;
 import mcm.projects.mypaths.client.service.LoginService;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
+import mcm.projects.mypaths.client.service.UploadCategoriaRutas;
+import mcm.projects.mypaths.client.service.UploadCategoriaRutasAsync;
+import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.dropbox.core.DbxAppInfo;
+import com.dropbox.core.DbxRequestConfig;
+import com.dropbox.core.DbxWebAuthNoRedirect;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -26,12 +42,13 @@ public class MyPathsApp implements EntryPoint {
 
 	interface MyPathsAppUiBinder extends UiBinder<DockLayoutPanel, MyPathsApp> {
 	}
-	
-	
+
 	@UiField
 	CabeceraPanel panelCabecera;
 	@UiField
 	VerticalPanel panelPrincipal;
+	@UiField
+	VerticalPanel panelBuscar;
 
 	DockLayoutPanel outer = new DockLayoutPanel(Unit.EM);
 
@@ -58,37 +75,24 @@ public class MyPathsApp implements EntryPoint {
 		init();
 
 	}
-//TODO ya se vera si hace algo diferente con session storage lleno o vacio.
-//	private void getLoggedInUser() {
-//		Storage storage = Storage.getSessionStorageIfSupported();
-//			if(storage.getItem("currentUser")==null || storage.getItem("currentUser")==""){
-//				init();
-//			}else {
-//				createUI();
-//			}
-//	}
-
-//	private void createUI() {
-//
-//		GWT.runAsync(new RunAsyncCallback() {
-//			@Override
-//			public void onFailure(Throwable reason) {
-//				Window.alert("Code download error: " + reason.getMessage());
-//			}
-//
-//			@Override
-//			public void onSuccess() {
-//				eventBus.fireEvent(new LoginEvent(usuarioActual));
-//			}
-//		});
-//	}
 
 	public void init() {
-//		final String APP_KEY = "fu1w90i518wx200";
-//        final String APP_SECRET = "4bcxvl0bd3ps0z5";
-//        
-//        DbxAppInfo appInfo = new DbxAppInfo(APP_KEY, APP_SECRET);
+		UploadCategoriaRutasAsync uploadCatService = GWT.create(UploadCategoriaRutas.class);
+		uploadCatService.up(new AsyncCallback<Void>() {
+			
+			@Override
+			public void onSuccess(Void result) {
+				Window.alert("exito subiendo categorias");
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Error subiendo categorias");
+				
+			}
+		});
 		DockLayoutPanel outer = binder.createAndBindUi(this);
+
 		root = RootLayoutPanel.get();
 		root.clear();
 		root.add(outer);
@@ -123,5 +127,13 @@ public class MyPathsApp implements EntryPoint {
 
 	public void setPanelPrincipal(VerticalPanel panelPrincipal) {
 		this.panelPrincipal = panelPrincipal;
+	}
+	
+	public VerticalPanel getPanelBuscar() {
+		return panelBuscar;
+	}
+
+	public void setPanelBuscar(VerticalPanel panelBuscar) {
+		this.panelBuscar = panelBuscar;
 	}
 }

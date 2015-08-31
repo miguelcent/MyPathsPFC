@@ -57,11 +57,12 @@ public class AddPathView extends Composite implements AddPathPresenter.Display{
 		tituloLabel.setText("Título (*)");
 		tituloInput.getElement().setPropertyString("placeholder", "Título de la ruta...");
 		categoriaLabel.setText("Categoría (*)");
-		categoriaList.addItem("Ciclista");
-		categoriaList.addItem("Gastronómica");
-		categoriaList.addItem("Turística");
+		categoriaList.addItem("Ciclismo");
+		categoriaList.addItem("Gastronomica");
+		categoriaList.addItem("Turistica");
 		categoriaList.addItem("Senderismo");
 		categoriaList.addItem("Running");
+		categoriaList.setSelectedIndex(0);
 		descripcionLabel.setText("Descripción ruta (*)");
 		descripcionInput.getElement().setPropertyString("placeholder", "Descripción de la ruta...");
 		botonEnviar.setText("Enviar");
