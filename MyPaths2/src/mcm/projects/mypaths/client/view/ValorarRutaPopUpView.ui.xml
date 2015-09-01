@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style src="../resources/GlobalStyles.css" />
+	<g:HTMLPanel>
+		<div align="center" style="background-color:white; width:500px;">
+			<g:DecoratorPanel>
+					<g:VerticalPanel>
+						<g:Label styleName="{style.tituloPopup}">Valorar Ruta</g:Label>
+						<g:Label ui:field="valoracionActualLabel"></g:Label>
+						<g:Label ui:field="votosLabel" styleName="style.padding5T"></g:Label>
+						<g:Label styleName="style.padding5T">Su valoración: </g:Label>
+						<g:FlowPanel ui:field="votosGroup" styleName="style.padding5T">
+							<g:RadioButton name="radio1" ui:field="voto1">1 punto</g:RadioButton>
+							<g:RadioButton name="radio2" ui:field="voto2">2 puntos</g:RadioButton>
+							<g:RadioButton name="radio3" ui:field="voto3">3 puntos</g:RadioButton>
+							<g:RadioButton name="radio4" ui:field="voto4">4 puntos</g:RadioButton>
+							<g:RadioButton name="radio5" ui:field="voto5">5 puntos</g:RadioButton>
+						</g:FlowPanel>
+						<g:HorizontalPanel styleName='{style.padding10T}'>
+							<g:PushButton ui:field="enviarButton">Enviar</g:PushButton>
+						</g:HorizontalPanel>
+					</g:VerticalPanel>
+			</g:DecoratorPanel>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -10,13 +10,18 @@ import mcm.projects.mypaths.client.service.MapaService;
 import mcm.projects.mypaths.client.service.MapaServiceAsync;
 import mcm.projects.mypaths.client.service.RutaService;
 import mcm.projects.mypaths.client.service.RutaServiceAsync;
+import mcm.projects.mypaths.client.service.ValoracionService;
+import mcm.projects.mypaths.client.service.ValoracionServiceAsync;
 import mcm.projects.mypaths.client.utils.MapsUtils;
 import mcm.projects.mypaths.client.utils.ValidateFormsUtil;
 import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.MapaDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
+import mcm.projects.mypaths.shared.dto.ValoracionDTO;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -65,7 +70,9 @@ public class AddPathPresenter implements Presenter {
 
 	private RutaDTO ruta;
 	private UsuarioDTO user;
+	private String userUpdatedKey;
 	private final LoginServiceAsync rpcService;
+	private final ValoracionServiceAsync valService;
 	private final SimpleEventBus eventBus;
 	private final MapaServiceAsync mapaService;
 	private final RutaServiceAsync rutaService;
@@ -80,6 +87,7 @@ public class AddPathPresenter implements Presenter {
 		MapsUtils.pintarMapaDefecto(this.display.getMapCanvas());
 		mapaService = GWT.create(MapaService.class);
 		rutaService = GWT.create(RutaService.class);
+		valService = GWT.create(ValoracionService.class);
 		categoriaService = GWT.create(CategoriaRutaService.class);
 
 		rpcService.getLoggedInUserDTO(Storage.getSessionStorageIfSupported()
@@ -190,14 +198,40 @@ public class AddPathPresenter implements Presenter {
 				ruta.setFechaCreacion(new Date());
 				ruta.setCategoriaKey(result.getKey());
 				addRuta();
+				
+				addValoracion();
 			}
 		});
 		
 		
 	}
 	
+	protected void addValoracion() {
+		ValoracionDTO val = new ValoracionDTO();
+		val.setRutaKey(getUserUpdatedKey());
+		val.setUsuarioKey(user.getKey());
+		val.setCuentaValoracion(0.0);
+		val.setValoracionTotal(0.0);
+		valService.addValoracion(val, new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				
+			}
+		});
+	}
+
+	protected String getUserUpdatedKey() {
+		return userUpdatedKey;
+	}
+
 	public void addRuta(){
-		rutaService.add(ruta, new AsyncCallback<Void>() {
+		rutaService.add(ruta, new AsyncCallback<String>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -205,13 +239,18 @@ public class AddPathPresenter implements Presenter {
 			}
 
 			@Override
-			public void onSuccess(Void result) {
+			public void onSuccess(String result) {
 				Window.alert("Ruta dada de alta perfectamente");
+				setUserUpdatedKey(result);
 				eventBus.fireEvent(new InicioEvent());
 			}
 		});
 	}
 	
+	protected void setUserUpdatedKey(String result) {
+		this.userUpdatedKey = result;
+	}
+
 	@Override
 	public void go(HasWidgets container) {
 		container.clear();

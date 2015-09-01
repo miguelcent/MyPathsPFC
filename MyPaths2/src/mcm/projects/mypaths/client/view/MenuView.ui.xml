@@ -11,7 +11,6 @@
 				<g:MenuItem ui:field="buscarLink" />
 				<g:MenuItem ui:field="addPathLink" />
 				<g:MenuItem ui:field="perfilLink" />
-				<g:MenuItem ui:field="rutaItemLink" />
 				<g:MenuItem ui:field="cerrarSesionLink" />
 			</g:MenuBar>
 			<g:Label ui:field="usernameLabel" />

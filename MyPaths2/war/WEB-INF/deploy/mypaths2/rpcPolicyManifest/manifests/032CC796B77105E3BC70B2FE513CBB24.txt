@@ -1,0 +1,2 @@
+serviceClass: mcm.projects.mypaths.client.service.ValoracionService
+path: 442AB03FA9A289E40BDC7EC2267576FB.gwt.rpc

@@ -1,19 +1,22 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 	<ui:with field='res' type='mcm.projects.mypaths.client.resources.ResourcesBundle'></ui:with>
 	<ui:style src="../../resources/GlobalStyles.css" />
 	<g:HTMLPanel>
-		<div align="center" style="background-color:white;" width="600px">
-			<g:DecoratorPanel >
-				<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
-					<g:HorizontalPanel>
-						<g:Label ui:field="tituloLabel" styleName='{style.rutaItemNombre}'></g:Label>
-						<g:HorizontalPanel ui:field="otherUser">
-							<g:Label>De</g:Label>
-							<g:Hyperlink ui:field="userLink" />
+		<div align="center" style="background-color:white; width:500px;" >
+			<g:DecoratorPanel>
+				<g:VerticalPanel verticalAlignment="ALIGN_MIDDLE" width="500px">
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" width="500px">
+						<g:DecoratorPanel width="250px">
+							<g:Label ui:field="tituloLabel" styleName='{style.rutaItemNombre}' height="24px" width="250px" horizontalAlignment="ALIGN_LEFT"></g:Label>
+						</g:DecoratorPanel>
+						<g:HorizontalPanel ui:field="otherUser" verticalAlignment="ALIGN_MIDDLE" height="24px">
+							<g:Label styleName='{style.padding5R}'>De</g:Label>
+							<g:Hyperlink ui:field="userLink" styleName='{style.padding10R}'/>
 						</g:HorizontalPanel>
-						<g:HorizontalPanel ui:field="ownUser">
+						<g:HorizontalPanel ui:field="ownUser" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" width="100%">
 							<g:PushButton ui:field="editButton" width="18px">  
 								<g:upFace image="{res.editar}"/>
 							</g:PushButton>
@@ -23,14 +26,21 @@
 						</g:HorizontalPanel>
 					</g:HorizontalPanel>
 						
-					<g:HorizontalPanel>
-						<g:FlowPanel ui:field="imageCategoryWrapper" width="40px" height="40px">
-						</g:FlowPanel>
-						<g:Label ui:field="tituloCategoria"></g:Label>
-						<g:Label ui:field="ownRuta">Mis Rutas</g:Label>
-						<g:PushButton ui:field="viewButton" width="18px">
-							<g:upFace image="{res.verMapa}"/>
-						</g:PushButton>
+					<g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE" width="500px">
+						<g:DecoratorPanel width="170px">
+							<g:HorizontalPanel width="170px" verticalAlignment="ALIGN_MIDDLE">
+								<g:FlowPanel ui:field="imageCategoryWrapper" width="40px" height="40px" styleName='{style.padding5R}'>
+								</g:FlowPanel>
+								<g:Label ui:field="tituloCategoria" width='130px' styleName='{style.padding10R}'></g:Label>
+							</g:HorizontalPanel>
+						</g:DecoratorPanel>
+						
+						<g:Label ui:field="ownRuta" styleName='{style.padding10R}'>Mis Rutas</g:Label>
+						<g:HorizontalPanel horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" width="100%">
+							<g:PushButton ui:field="viewButton" width="72px">
+								<g:upFace image="{res.verMapa}"/>
+							</g:PushButton>
+						</g:HorizontalPanel>
 					</g:HorizontalPanel>
 				</g:VerticalPanel>
 			</g:DecoratorPanel>

@@ -37,8 +37,7 @@ public class MenuView extends Composite implements MenuPresenter.Display {
 	MenuItem cerrarSesionLink;
 	@UiField
 	MenuItem buscarLink;
-	@UiField
-	MenuItem rutaItemLink;
+	
 	@UiField
 	Label usernameLabel;
 
@@ -60,8 +59,6 @@ public class MenuView extends Composite implements MenuPresenter.Display {
 		cerrarSesionLink.setText("Logout");
 		buscarLink.setText("Buscar");
 		buscarLink.setScheduledCommand(new MenuCommand(HistoryToken.Buscar));
-		buscarLink.setText("PRUEBA Ruta Item");
-		buscarLink.setScheduledCommand(new MenuCommand(HistoryToken.PruebaRutaItem));
 	}
 
 	public MenuBar getMenuBar() {
@@ -102,11 +99,6 @@ public class MenuView extends Composite implements MenuPresenter.Display {
 	
 	public MenuView asWidget(){
 		return this;
-	}
-
-	@Override
-	public MenuItem getVerRutaItemLink() {
-		return rutaItemLink;
 	}
 
 }

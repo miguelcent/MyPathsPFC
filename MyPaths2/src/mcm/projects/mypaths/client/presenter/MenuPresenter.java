@@ -23,7 +23,6 @@ public class MenuPresenter implements Presenter {
 		MenuItem getPerfilLink();
 		MenuItem getCerrarSesionLink();
 		MenuItem getBuscarLink();
-		MenuItem getVerRutaItemLink();
 		HasText getUsernameLabel();
 		Widget asWidget();
 	}

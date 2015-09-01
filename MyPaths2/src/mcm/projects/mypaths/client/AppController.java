@@ -1,5 +1,6 @@
 package mcm.projects.mypaths.client;
 
+
 import mcm.projects.mypaths.client.event.AddPathEvent;
 import mcm.projects.mypaths.client.event.AddPathEventHandler;
 import mcm.projects.mypaths.client.event.EditProfileEvent;
@@ -10,10 +11,12 @@ import mcm.projects.mypaths.client.event.LoginEvent;
 import mcm.projects.mypaths.client.event.LoginEventHandler;
 import mcm.projects.mypaths.client.event.LogoutEvent;
 import mcm.projects.mypaths.client.event.LogoutEventHandler;
-import mcm.projects.mypaths.client.event.PruebaRutaItemEvent;
-import mcm.projects.mypaths.client.event.PruebaRutaItemEventHandler;
 import mcm.projects.mypaths.client.event.RegistroEvent;
 import mcm.projects.mypaths.client.event.RegistroEventHandler;
+import mcm.projects.mypaths.client.event.ValorarRutaEvent;
+import mcm.projects.mypaths.client.event.ValorarRutaEventHandler;
+import mcm.projects.mypaths.client.event.ViewRutaEvent;
+import mcm.projects.mypaths.client.event.ViewRutaEventHandler;
 import mcm.projects.mypaths.client.presenter.AddPathPresenter;
 import mcm.projects.mypaths.client.presenter.BusquedaPresenter;
 import mcm.projects.mypaths.client.presenter.EditProfilePresenter;
@@ -22,11 +25,17 @@ import mcm.projects.mypaths.client.presenter.MenuPresenter;
 import mcm.projects.mypaths.client.presenter.Presenter;
 import mcm.projects.mypaths.client.presenter.RegistroPresenter;
 import mcm.projects.mypaths.client.presenter.RutaWidgetPresenter;
+import mcm.projects.mypaths.client.presenter.ValorarRutaPopUpPresenter;
+import mcm.projects.mypaths.client.presenter.VerRutaPresenter;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
+import mcm.projects.mypaths.client.service.MapaService;
+import mcm.projects.mypaths.client.service.MapaServiceAsync;
 import mcm.projects.mypaths.client.service.RutaService;
 import mcm.projects.mypaths.client.service.RutaServiceAsync;
 import mcm.projects.mypaths.client.service.UserService;
 import mcm.projects.mypaths.client.service.UserServiceAsync;
+import mcm.projects.mypaths.client.service.ValoracionService;
+import mcm.projects.mypaths.client.service.ValoracionServiceAsync;
 import mcm.projects.mypaths.client.utils.MenuUtil;
 import mcm.projects.mypaths.client.view.AddPathView;
 import mcm.projects.mypaths.client.view.BusquedaView;
@@ -34,6 +43,8 @@ import mcm.projects.mypaths.client.view.EditProfileView;
 import mcm.projects.mypaths.client.view.LoginView;
 import mcm.projects.mypaths.client.view.MenuView;
 import mcm.projects.mypaths.client.view.RegistroView;
+import mcm.projects.mypaths.client.view.ValorarRutaPopUpView;
+import mcm.projects.mypaths.client.view.VerRutaView;
 import mcm.projects.mypaths.client.view.widgets.RutaWidget;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
@@ -43,13 +54,14 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.PopupPanel;
 
 public class AppController implements ValueChangeHandler<String> {
 
 	private final SimpleEventBus eventbus;
 	private LoginServiceAsync loginService;
 	private LoginPresenter loginPresenter;
+	private RutaDTO rutaDTO;
 	private MenuView menuView;
 	
 	public RutaDTO rutita = new RutaDTO();
@@ -103,14 +115,7 @@ public class AppController implements ValueChangeHandler<String> {
 					}
 				});
 		
-		eventbus.addHandler(PruebaRutaItemEvent.TYPE,
-				new PruebaRutaItemEventHandler() {
-					
-					@Override
-					public void onPruebaRutaItem(PruebaRutaItemEvent event) {
-						doPruebaRutaItem();
-					}
-				});
+		
 
 		eventbus.addHandler(LogoutEvent.TYPE, new LogoutEventHandler() {
 
@@ -119,7 +124,38 @@ public class AppController implements ValueChangeHandler<String> {
 				doLogout();
 			}
 		});
+		
+		eventbus.addHandler(ViewRutaEvent.TYPE, new ViewRutaEventHandler() {
+			
+			@Override
+			public void onViewRuta(ViewRutaEvent viewRutaEvent) {
+				setRutaDTO(viewRutaEvent.getRuta());
+				doVerRuta();
+			}
+		});
+		
+		eventbus.addHandler(ValorarRutaEvent.TYPE, new ValorarRutaEventHandler() {
+			
+			@Override
+			public void onValorarRuta(ValorarRutaEvent event) {
+				PopupPanel popup = new PopupPanel(true, true);
+				ValoracionServiceAsync valServ = GWT.create(ValoracionService.class);
+				ValorarRutaPopUpPresenter valPopPresenter = new ValorarRutaPopUpPresenter(valServ, eventbus, new ValorarRutaPopUpView(), event.getRuta());
+				valPopPresenter.go(popup);
+				popup.setGlassEnabled(true);
+				popup.center();
+			}
+		});
+		
 
+	}
+	
+	protected void doValorarRuta() {
+		History.newItem("ValorarRuta");
+	}
+
+	protected void doVerRuta() {
+		History.newItem("VerRuta");
 	}
 
 	protected void doPruebaRutaItem() {
@@ -171,6 +207,7 @@ public class AppController implements ValueChangeHandler<String> {
 		if (token != null) {
 
 			if (token.equals("Inicio")) {
+				MyPathsApp.get().getPanelPrincipal().clear();
 				presenter = new BusquedaPresenter(loginService, eventbus,
 						new BusquedaView());
 
@@ -179,6 +216,7 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
+				
 			} else if (token.equals("Login")) {
 				presenter = getLoginPresenter();
 				presenter.go(MyPathsApp.get().getPanelPrincipal());
@@ -187,6 +225,7 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
+				MyPathsApp.get().getPanelBuscar().clear();
 				return;
 			} else if (token.equals("Registro")) {
 				UserServiceAsync userservice = GWT.create(UserService.class);
@@ -197,6 +236,7 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
+				MyPathsApp.get().getPanelBuscar().clear();
 				return;
 			} else if (token.equals("AddPath")) {
 				AddPathView vista = new AddPathView();
@@ -206,6 +246,7 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
+				MyPathsApp.get().getPanelBuscar().clear();
 				return;
 			} else if (token.equals("Perfil")) {
 				EditProfileView vista = new EditProfileView();
@@ -216,6 +257,7 @@ public class AppController implements ValueChangeHandler<String> {
 				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
 						.getMenuCabecera());
+				MyPathsApp.get().getPanelBuscar().clear();
 				return;
 			} else if (token.equals("PruebaRutaItem")) {
 				RutaWidget vista = new RutaWidget();
@@ -230,6 +272,21 @@ public class AppController implements ValueChangeHandler<String> {
 						new BusquedaView());
 				presenter3.go(MyPathsApp.get().getPanelBuscar());
 				return;
+			} else if (token.equals("VerRuta")) {
+				Window.alert(getRutaDTO().getNombre());
+				VerRutaView vista = new VerRutaView();
+				MapaServiceAsync mapaService = GWT.create(MapaService.class);
+				presenter = new VerRutaPresenter(mapaService, eventbus, vista, getRutaDTO());
+				presenter.go(MyPathsApp.get().getPanelPrincipal());
+				menuView = MenuUtil.getMenu(token);
+				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
+				presenter2.go(MyPathsApp.get().getPanelCabecera()
+						.getMenuCabecera());
+				presenter3 = new BusquedaPresenter(loginService, eventbus,
+						new BusquedaView());
+				presenter3.go(MyPathsApp.get().getPanelBuscar());
+				MyPathsApp.get().getPanelBuscar().clear();
+				return;
 			}
 		}
 	}
@@ -241,6 +298,14 @@ public class AppController implements ValueChangeHandler<String> {
 					new LoginView());
 		}
 		return loginPresenter;
+	}
+
+	public RutaDTO getRutaDTO() {
+		return rutaDTO;
+	}
+
+	public void setRutaDTO(RutaDTO rutaDTO) {
+		this.rutaDTO = rutaDTO;
 	}
 
 }

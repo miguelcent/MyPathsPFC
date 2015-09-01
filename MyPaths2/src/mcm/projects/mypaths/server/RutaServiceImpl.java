@@ -6,15 +6,25 @@ import mcm.projects.mypaths.client.service.RutaService;
 import mcm.projects.mypaths.server.dao.RutaDao;
 import mcm.projects.mypaths.shared.NotLoggedInException;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
+
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")
 public class RutaServiceImpl extends RemoteServiceServlet implements RutaService{
 
 	@Override
-	public void add(RutaDTO ruta) throws NotLoggedInException {
+	public String add(RutaDTO ruta) throws NotLoggedInException {
 		RutaDao dao = new RutaDao();
-		dao.add(ruta);
+		String k = "hola";
+		try {
+			k = dao.add(ruta);
+		} catch (EntityNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return k;
 	}
 
 	@Override
@@ -40,6 +50,13 @@ public class RutaServiceImpl extends RemoteServiceServlet implements RutaService
 		RutaDao dao = new RutaDao();
 		RutaDTO ruta = dao.get(rutaKey);
 		return ruta;
+	}
+
+	@Override
+	public List<RutaDTO> getRutasUsuario(String userId) {
+		RutaDao dao = new RutaDao();
+		List<RutaDTO> rutas = dao.getRutasUsuario(userId);
+		return rutas;
 	}
 
 }

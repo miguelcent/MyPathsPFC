@@ -1,16 +1,23 @@
 package mcm.projects.mypaths.server.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 
 public class RutaDao {
 
@@ -35,13 +42,26 @@ public class RutaDao {
 	// TODO pendiente desarrollo este metodo para traer rutas de un usuario
 	// dado.
 	public List<RutaDTO> getRutasUsuario(String userKey) {
-		return null;
-
+		Query q = new Query("Ruta");
+		Filter equalFilter = new FilterPredicate("usuarioKey", FilterOperator.EQUAL, userKey);
+		List<Entity> rutas = datastore.prepare(q.setFilter(equalFilter)).asList(FetchOptions.Builder.withLimit(25));
+		List<RutaDTO> rutasDTO = new ArrayList<RutaDTO>();
+		
+		for (Entity result : rutas) {
+			RutaDTO dto = fromEntity(result);
+			rutasDTO.add(dto);
+		}
+		if(rutasDTO.size()>0){
+			return rutasDTO;
+		} else {
+			return null;
+		}
 	}
 
-	public void add(RutaDTO ruta) {
+	public String add(RutaDTO ruta) throws EntityNotFoundException {
 		Entity entity = fromDto(ruta);
-		datastore.put(entity);
+		Key k = datastore.put(entity);	
+		return KeyFactory.keyToString(k);
 	}
 
 	public void delete(String encodedKey) {

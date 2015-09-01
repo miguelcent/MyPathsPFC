@@ -3,25 +3,12 @@
  */
 package mcm.projects.mypaths.client;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import mcm.projects.mypaths.client.service.CategoriaRutaService;
-import mcm.projects.mypaths.client.service.CategoriaRutaServiceAsync;
 import mcm.projects.mypaths.client.service.LoginService;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.client.service.UploadCategoriaRutas;
 import mcm.projects.mypaths.client.service.UploadCategoriaRutasAsync;
-import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
-import com.dropbox.core.DbxAppInfo;
-import com.dropbox.core.DbxRequestConfig;
-import com.dropbox.core.DbxWebAuthNoRedirect;
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style.Unit;

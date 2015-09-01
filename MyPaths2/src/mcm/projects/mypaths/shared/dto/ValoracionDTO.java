@@ -1,6 +1,9 @@
 package mcm.projects.mypaths.shared.dto;
 
-public class ValoracionDTO {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class ValoracionDTO implements Serializable{
 	private String usuarioKey;
 	private String rutaKey;
 	private String key;

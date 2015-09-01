@@ -1,14 +1,16 @@
 package mcm.projects.mypaths.client.presenter;
 
+import mcm.projects.mypaths.client.event.ViewRutaEvent;
 import mcm.projects.mypaths.client.service.CategoriaRutaService;
 import mcm.projects.mypaths.client.service.CategoriaRutaServiceAsync;
 import mcm.projects.mypaths.client.service.RutaServiceAsync;
 import mcm.projects.mypaths.client.utils.UtilsImages;
 import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
-import mcm.projects.mypaths.shared.dto.UploadedImageDTO;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
@@ -68,13 +70,18 @@ public class RutaWidgetPresenter implements Presenter {
 		this.categoria = new CategoriaRutaDTO();
 		categoriaService = GWT
 				.create(CategoriaRutaService.class);
+		loadRutaDetails(rutaKey);
 		bind();
-		loadRutaDetails(rutaKey);		
+				
 	}
 
 	private void bind() {
-		// TODO Auto-generated method stub
-		
+		this.display.getViewButton().addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				eventBus.fireEvent(new ViewRutaEvent(ruta));
+			}
+		});
 	}
 
 	private void loadRutaDetails(String rutaKey) {
@@ -83,7 +90,7 @@ public class RutaWidgetPresenter implements Presenter {
 			@Override
 			public void onSuccess(RutaDTO result) {
 				ruta = result;
-				Window.alert("Retrieveing RUTA from KEY.............entramos en categoriaService init con la ruta: "+ruta.getNombre()+" cat: "+ruta.getCategoriaKey());
+//				Window.alert("Retrieveing RUTA from KEY.............entramos en categoriaService init con la ruta: "+ruta.getNombre()+" cat: "+ruta.getCategoriaKey());
 				loadCategoriaRutaAndDraw(ruta);
 			}
 			
@@ -95,6 +102,10 @@ public class RutaWidgetPresenter implements Presenter {
 		
 	}
 	
+	public void setRuta(RutaDTO ruta) {
+		this.ruta = ruta;
+	}
+
 	private void loadCategoriaRutaAndDraw(RutaDTO ruta) {
 		categoriaService.getCategoriaFromCategoriaName(ruta.getCategoriaKey(), new AsyncCallback<CategoriaRutaDTO>() {
 
@@ -106,7 +117,7 @@ public class RutaWidgetPresenter implements Presenter {
 			@Override
 			public void onSuccess(CategoriaRutaDTO result) {
 				categoria = result;
-				Window.alert("Retrieving CATEGORIA from KEY: ..........categoria: "+categoria.getNombreCategoria()+" imagenId: "+categoria.getImagenCategoria());
+//				Window.alert("Retrieving CATEGORIA from KEY: ..........categoria: "+categoria.getNombreCategoria()+" imagenId: "+categoria.getImagenCategoria());
 				cargaVista();
 //				categoriaService.getImagenCategoria(result.getImagenCategoria(), new AsyncCallback<UploadedImageDTO>() {
 //
