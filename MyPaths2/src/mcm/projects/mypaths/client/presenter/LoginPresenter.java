@@ -18,6 +18,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class LoginPresenter implements Presenter {
@@ -37,6 +38,7 @@ public class LoginPresenter implements Presenter {
 	}
 	private Storage sto = Storage.getSessionStorageIfSupported();
 	private UsuarioDTO user;
+	@SuppressWarnings("unused")
 	private final LoginServiceAsync loginService;
 	private final UserServiceAsync userService;
 	private final SimpleEventBus eventBus;
@@ -125,6 +127,7 @@ public class LoginPresenter implements Presenter {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void limpiaForm(){
 		display.getUsername().setValue("");
 		display.getPassword().setValue("");
@@ -138,6 +141,12 @@ public class LoginPresenter implements Presenter {
 	// TODO pendiente definir servlet /logingoogle y logica de logingoogle.
 	protected void doLoginGoogle() {
 		Window.Location.assign("/logingoogle");
+	}
+
+	@Override
+	public void addIn(VerticalPanel panelPrincipal) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -68,5 +68,7 @@ public interface ResourcesBundle extends ClientBundle {
 
 	@Source("verMapa.png")
 	ImageResource verMapa();
-
+	
+	@Source("imgIndex.png")
+	ImageResource imagenInicio();
 }

@@ -3,7 +3,6 @@ package mcm.projects.mypaths.server.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.ValoracionDTO;
 
 import com.google.appengine.api.datastore.DatastoreService;

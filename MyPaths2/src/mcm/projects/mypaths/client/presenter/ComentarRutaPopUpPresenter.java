@@ -1,19 +1,16 @@
 package mcm.projects.mypaths.client.presenter;
 
-import mcm.projects.mypaths.client.presenter.ValorarRutaPopUpPresenter.Display;
-import mcm.projects.mypaths.client.service.ComentarioService;
 import mcm.projects.mypaths.client.service.ComentarioServiceAsync;
 import mcm.projects.mypaths.client.service.RutaService;
 import mcm.projects.mypaths.client.service.RutaServiceAsync;
-import mcm.projects.mypaths.client.service.ValoracionServiceAsync;
 import mcm.projects.mypaths.shared.dto.ComentarioDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ComentarRutaPopUpPresenter implements Presenter{
@@ -23,9 +20,13 @@ public class ComentarRutaPopUpPresenter implements Presenter{
 		HasText getLabelUsuario();
 	}
 	
+	@SuppressWarnings("unused")
 	private RutaDTO ruta = new RutaDTO();
+	@SuppressWarnings("unused")
 	private final SimpleEventBus eventBus;
+	@SuppressWarnings("unused")
 	private final ComentarioServiceAsync comService;
+	@SuppressWarnings("unused")
 	private final RutaServiceAsync rutaService;
 	private final Display display;
 	
@@ -40,6 +41,7 @@ public class ComentarRutaPopUpPresenter implements Presenter{
 		bind();
 	}
 	
+	@SuppressWarnings("unused")
 	private void paint(RutaDTO ruta2) {
 		// TODO Auto-generated method stub
 		
@@ -69,6 +71,12 @@ public class ComentarRutaPopUpPresenter implements Presenter{
 		container.add(display.asWidget());
 	}
 	public void go(){
+		
+	}
+
+	@Override
+	public void addIn(VerticalPanel panelPrincipal) {
+		// TODO Auto-generated method stub
 		
 	}
 }

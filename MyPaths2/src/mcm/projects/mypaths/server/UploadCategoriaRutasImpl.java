@@ -1,22 +1,14 @@
 package mcm.projects.mypaths.server;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import mcm.projects.mypaths.client.service.UploadCategoriaRutas;
 import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
-import mcm.projects.mypaths.shared.dto.UploadedImageDTO;
 
-import com.google.appengine.api.blobstore.BlobKey;
-import com.google.appengine.api.blobstore.BlobstoreService;
-import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.images.ImagesService;
-import com.google.appengine.api.images.ImagesServiceFactory;
-import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
 import com.google.appengine.api.datastore.DatastoreService;

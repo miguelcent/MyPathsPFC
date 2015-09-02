@@ -58,4 +58,10 @@ public class UtilsImages {
 		Image turisticaImagen = new Image(res.turisticoBlue());
 		return turisticaImagen;
 	}
+	
+	public static Image getImagenInicio() {
+		ResourcesBundle res = ResourcesBundle.RESOURCE;
+		Image imagenInicio = new Image(res.imagenInicio());
+		return imagenInicio;
+	}
 }

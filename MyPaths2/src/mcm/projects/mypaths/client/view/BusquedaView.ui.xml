@@ -4,8 +4,8 @@
 	<ui:style src="../resources/GlobalStyles.css" />
 	
 	<g:HTMLPanel>
-		<div align="center" height="300px" style="background-color:white;">
-			<g:DecoratorPanel>
+		<div align="center" height="300px">
+			<g:DecoratorPanel styleName="{style.colorWhite}">
 				<g:HorizontalPanel ui:field="formContainer"
 					horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
 					<g:TextBox ui:field="inputBusqueda" width="400px" />
@@ -13,6 +13,7 @@
 					<g:Button ui:field="buscarRutas">Buscar</g:Button>
 				</g:HorizontalPanel>
 			</g:DecoratorPanel>
+			<g:SimplePanel ui:field="imagenInicio" styleName="{style.padding5T}"></g:SimplePanel>
 			<!-- Add GWT widgets here. Enter < and hit Ctrl-Space to auto-complete 
 				widget names. The ui:field attribute binds an element to a field in the owner 
 				class. See the GWT docs on UI Binder for more details. -->

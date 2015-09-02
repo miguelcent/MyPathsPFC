@@ -69,7 +69,7 @@ public class MyPathsApp implements EntryPoint {
 			
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("exito subiendo categorias");
+//				Window.alert("exito subiendo categorias");
 			}
 			
 			@Override

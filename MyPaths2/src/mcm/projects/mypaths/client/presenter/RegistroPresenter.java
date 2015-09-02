@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 
@@ -83,7 +84,7 @@ public class RegistroPresenter implements Presenter {
 						startNewBlobstoreSession();
 						
 						String key = event.getResults();
-						Window.alert(key);
+//						Window.alert(key);
 						if(!(null==key || key.equals(""))){
 							imageService.get(key,
 							new AsyncCallback<UploadedImageDTO>() {
@@ -205,7 +206,7 @@ public class RegistroPresenter implements Presenter {
 		return error;
 	}
 
-	private void startNewBlobstoreSession() {
+	public void startNewBlobstoreSession() {
 		imageService.getBlobstoreUploadUrl(new AsyncCallback<String>() {
 
 			@Override
@@ -218,6 +219,12 @@ public class RegistroPresenter implements Presenter {
 				Window.alert("Error trayendose url para el tratamiento de la subida de imagen");
 			}
 		});
+	}
+
+	@Override
+	public void addIn(VerticalPanel panelPrincipal) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -28,6 +28,7 @@ public class MapaServiceImpl extends RemoteServiceServlet implements MapaService
 		return mapa;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void deleteMap(String key) {
 		LoginService ls = GWT.create(LoginService.class);

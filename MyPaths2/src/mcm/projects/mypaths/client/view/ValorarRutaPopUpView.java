@@ -1,18 +1,18 @@
 package mcm.projects.mypaths.client.view;
 
+import mcm.projects.mypaths.client.presenter.ValorarRutaPopUpPresenter.Display;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasValue;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.Widget;
-
-import mcm.projects.mypaths.client.presenter.ValorarRutaPopUpPresenter.Display;
 
 public class ValorarRutaPopUpView extends Composite implements Display{
 
@@ -28,7 +28,7 @@ public class ValorarRutaPopUpView extends Composite implements Display{
 	@UiField
 	Label votosLabel;
 	@UiField
-	FlowPanel votosGroup;
+	HorizontalPanel votosGroup;
 	@UiField
 	RadioButton voto1;
 	@UiField
@@ -77,7 +77,7 @@ public class ValorarRutaPopUpView extends Composite implements Display{
 	}
 
 	@Override
-	public FlowPanel getGrupoValoraciones() {
+	public HorizontalPanel getGrupoValoraciones() {
 		return votosGroup; 
 	}
 

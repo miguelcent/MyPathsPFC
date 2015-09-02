@@ -1,5 +1,6 @@
 package mcm.projects.mypaths.client.presenter;
 
+import mcm.projects.mypaths.client.event.ComentarRutaEvent;
 import mcm.projects.mypaths.client.event.ValorarRutaEvent;
 import mcm.projects.mypaths.client.service.MapaServiceAsync;
 import mcm.projects.mypaths.client.utils.MapsUtils;
@@ -15,6 +16,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class VerRutaPresenter implements Presenter {
@@ -37,6 +39,7 @@ public class VerRutaPresenter implements Presenter {
 	
 	private RutaDTO ruta = new RutaDTO();
 	private final SimpleEventBus eventBus;
+	@SuppressWarnings("unused")
 	private final MapaServiceAsync mapaService;
 	private final Display display;
 	
@@ -57,6 +60,13 @@ public class VerRutaPresenter implements Presenter {
 				eventBus.fireEvent(new ValorarRutaEvent(ruta));
 			}
 		});
+		this.display.getComentarButton().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				eventBus.fireEvent(new ComentarRutaEvent(ruta));
+			}
+		});
 	}
 
 	private void paint(RutaDTO r) {
@@ -71,6 +81,12 @@ public class VerRutaPresenter implements Presenter {
 	public void go(HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
+	}
+
+	@Override
+	public void addIn(VerticalPanel panelPrincipal) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

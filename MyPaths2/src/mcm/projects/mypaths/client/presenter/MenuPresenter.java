@@ -3,6 +3,7 @@ package mcm.projects.mypaths.client.presenter;
 import mcm.projects.mypaths.client.MyPathsApp;
 import mcm.projects.mypaths.client.event.LogoutEvent;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
+
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.storage.client.Storage;
@@ -11,6 +12,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MenuPresenter implements Presenter {
@@ -77,6 +79,12 @@ public class MenuPresenter implements Presenter {
 		container.clear();
 		container.add(display.asWidget());
 		bind();
+	}
+
+	@Override
+	public void addIn(VerticalPanel panelPrincipal) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

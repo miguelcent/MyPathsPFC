@@ -26,6 +26,7 @@ import com.google.appengine.api.images.ServingUrlOptions;
 
 @SuppressWarnings("serial")
 public class UploadImageBlobServlet extends HttpServlet {
+	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(UploadImageBlobServlet.class
             .getName());
  

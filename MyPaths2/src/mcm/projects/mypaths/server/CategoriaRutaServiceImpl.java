@@ -4,12 +4,9 @@ import java.util.List;
 
 import mcm.projects.mypaths.client.service.CategoriaRutaService;
 import mcm.projects.mypaths.server.dao.CategoriaRutaDao;
-import mcm.projects.mypaths.server.dao.RutaDao;
 import mcm.projects.mypaths.server.dao.UploadedImageDao;
 import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
-import mcm.projects.mypaths.shared.dto.RutaDTO;
 import mcm.projects.mypaths.shared.dto.UploadedImageDTO;
-import mcm.projects.mypaths.uml.UploadedImage;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

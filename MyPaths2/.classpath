@@ -12,5 +12,10 @@
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT (1)"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-samples.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-tests.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

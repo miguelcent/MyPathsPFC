@@ -79,25 +79,4 @@ public class MenuPanel extends Composite{
 		return usernameLabel;
 	}
 
-//	@UiField
-//	Button button;
-//
-//	public MenuPanel(String firstName) {
-//		initWidget(uiBinder.createAndBindUi(this));
-//		button.setText(firstName);
-//	}
-//
-//	@UiHandler("button")
-//	void onClick(ClickEvent e) {
-//		Window.alert("Hello!");
-//	}
-//
-//	public void setText(String text) {
-//		button.setText(text);
-//	}
-//
-//	public String getText() {
-//		return button.getText();
-//	}
-
 }

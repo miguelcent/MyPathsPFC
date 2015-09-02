@@ -17,10 +17,10 @@
       <tr>
         <td
           valign='top'>
-          <c:CellTable
+          <c:CellList
             addStyleNames='{style.cellTable}'
             pageSize='15'
-            ui:field='cellTable' />
+            ui:field='cellList' />
         </td>
       </tr>
       <tr>

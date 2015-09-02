@@ -20,8 +20,6 @@ import mcm.projects.mypaths.shared.dto.RutaDTO;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 import mcm.projects.mypaths.shared.dto.ValoracionDTO;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -40,6 +38,7 @@ import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class AddPathPresenter implements Presenter {
@@ -71,6 +70,7 @@ public class AddPathPresenter implements Presenter {
 	private RutaDTO ruta;
 	private UsuarioDTO user;
 	private String userUpdatedKey;
+	@SuppressWarnings("unused")
 	private final LoginServiceAsync rpcService;
 	private final ValoracionServiceAsync valService;
 	private final SimpleEventBus eventBus;
@@ -145,8 +145,8 @@ public class AddPathPresenter implements Presenter {
 					public void onSubmitComplete(SubmitCompleteEvent event) {
 						startMapUploadSession();
 						String key = event.getResults();
-						Window.alert(key
-								+ display.getFileUpload().getFilename());
+//						Window.alert(key
+//								+ display.getFileUpload().getFilename());
 						if (!(null == key || key.equals(""))) {
 							mapaService.get(key, new AsyncCallback<MapaDTO>() {
 
@@ -255,6 +255,12 @@ public class AddPathPresenter implements Presenter {
 	public void go(HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
+	}
+
+	@Override
+	public void addIn(VerticalPanel panelPrincipal) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

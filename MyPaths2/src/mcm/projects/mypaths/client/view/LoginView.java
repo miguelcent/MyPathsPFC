@@ -51,7 +51,7 @@ public class LoginView extends Composite implements LoginPresenter.Display {
 		this.passwordLabel.setText("Password: ");
 		passwordInput.getElement().setPropertyString("placeholder", "Password");
 		this.rememberText
-				.setText("¿Has olvidado tus credenciales?. Haz click ");
+				.setText("¿Has olvidado tus credenciales?. Click ");
 		this.rememberLink.setText("aquí.");
 		this.loginButton.setText("Login");
 		this.loginGoogleButton.setText("Login Google");

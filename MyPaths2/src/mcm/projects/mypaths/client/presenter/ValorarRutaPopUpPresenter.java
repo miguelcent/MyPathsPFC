@@ -9,11 +9,11 @@ import mcm.projects.mypaths.shared.dto.ValoracionDTO;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasValue;
 import com.google.gwt.user.client.ui.HasWidgets;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ValorarRutaPopUpPresenter implements Presenter {
@@ -25,16 +25,21 @@ public class ValorarRutaPopUpPresenter implements Presenter {
 		HasValue<Boolean> getRadio4();
 		HasValue<Boolean>  getRadio5();
 		HasClickHandlers getPushButton();
-		FlowPanel getGrupoValoraciones();
+		HorizontalPanel getGrupoValoraciones();
 		Label getValoracionActual();
 		Label getCuentaValoraciones();
 		Widget asWidget();
 	}
 	
+	@SuppressWarnings("unused")
 	private RutaDTO ruta = new RutaDTO();
+	@SuppressWarnings("unused")
 	private ValoracionDTO valoracion = new ValoracionDTO();
+	@SuppressWarnings("unused")
 	private final SimpleEventBus eventBus;
+	@SuppressWarnings("unused")
 	private final ValoracionServiceAsync valService;
+	@SuppressWarnings("unused")
 	private final RutaServiceAsync rutaService;
 	private final Display display;
 	
@@ -68,6 +73,7 @@ public class ValorarRutaPopUpPresenter implements Presenter {
 		
 	}
 
+	@SuppressWarnings("unused")
 	private void paint(RutaDTO ruta2) {
 		
 	}
@@ -79,6 +85,12 @@ public class ValorarRutaPopUpPresenter implements Presenter {
 	}
 	
 	public void go(){
+		
+	}
+
+	@Override
+	public void addIn(VerticalPanel panelPrincipal) {
+		// TODO Auto-generated method stub
 		
 	}
 

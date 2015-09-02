@@ -1,0 +1,2 @@
+serviceClass: mcm.projects.mypaths.client.service.ComentarioService
+path: 1ADDA1C130372619D0F16AAA3A0F8F13.gwt.rpc

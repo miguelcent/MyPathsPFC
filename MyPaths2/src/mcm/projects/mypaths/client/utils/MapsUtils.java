@@ -7,8 +7,6 @@ import com.google.maps.gwt.client.MapOptions;
 import com.google.maps.gwt.client.MapTypeId;
 import com.google.maps.gwt.client.Marker;
 
-import mcm.projects.mypaths.client.view.AddPathView;
-
 public class MapsUtils {
 	
 	public static void pintarMapaDefecto(FlowPanel vista){

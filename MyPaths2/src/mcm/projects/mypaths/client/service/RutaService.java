@@ -5,8 +5,6 @@ import java.util.List;
 import mcm.projects.mypaths.shared.NotLoggedInException;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
-import com.google.appengine.api.datastore.EntityNotFoundException;
-import com.google.appengine.api.datastore.Key;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 

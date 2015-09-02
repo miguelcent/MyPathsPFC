@@ -4,7 +4,6 @@ import java.util.List;
 
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
-import com.google.appengine.api.datastore.Key;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface RutaServiceAsync {

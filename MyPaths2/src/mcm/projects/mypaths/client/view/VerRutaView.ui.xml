@@ -9,7 +9,7 @@
 				<g:VerticalPanel verticalAlignment="ALIGN_MIDDLE" width="500px">
 
 					<g:HorizontalPanel styleName='{style.padding10T}'>
-						<g:DecoratorPanel width="350px">
+						<g:DecoratorPanel>
 							<g:Label ui:field="tituloLabel">
 							</g:Label>
 						</g:DecoratorPanel>

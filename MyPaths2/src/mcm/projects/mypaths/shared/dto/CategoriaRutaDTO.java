@@ -2,8 +2,6 @@ package mcm.projects.mypaths.shared.dto;
 
 import java.io.Serializable;
 
-import com.google.appengine.api.blobstore.BlobKey;
-
 @SuppressWarnings("serial")
 public class CategoriaRutaDTO implements Serializable{
 	public static final String IMAGEN = "imagenCategoria";

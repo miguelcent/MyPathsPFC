@@ -5,6 +5,7 @@ import mcm.projects.mypaths.client.service.CategoriaRutaService;
 import mcm.projects.mypaths.client.service.CategoriaRutaServiceAsync;
 import mcm.projects.mypaths.client.service.RutaServiceAsync;
 import mcm.projects.mypaths.client.utils.UtilsImages;
+import mcm.projects.mypaths.client.view.widgets.RutaWidget;
 import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
@@ -22,6 +23,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.PushButton;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class RutaWidgetPresenter implements Presenter {
@@ -51,6 +53,7 @@ public class RutaWidgetPresenter implements Presenter {
 	}
 
 	private Storage sto = Storage.getSessionStorageIfSupported();
+	@SuppressWarnings("unused")
 	private String loggedUsername = sto.getItem("currentUser");
 
 	private RutaDTO ruta;
@@ -90,7 +93,6 @@ public class RutaWidgetPresenter implements Presenter {
 			@Override
 			public void onSuccess(RutaDTO result) {
 				ruta = result;
-//				Window.alert("Retrieveing RUTA from KEY.............entramos en categoriaService init con la ruta: "+ruta.getNombre()+" cat: "+ruta.getCategoriaKey());
 				loadCategoriaRutaAndDraw(ruta);
 			}
 			
@@ -117,7 +119,6 @@ public class RutaWidgetPresenter implements Presenter {
 			@Override
 			public void onSuccess(CategoriaRutaDTO result) {
 				categoria = result;
-//				Window.alert("Retrieving CATEGORIA from KEY: ..........categoria: "+categoria.getNombreCategoria()+" imagenId: "+categoria.getImagenCategoria());
 				cargaVista();
 //				categoriaService.getImagenCategoria(result.getImagenCategoria(), new AsyncCallback<UploadedImageDTO>() {
 //
@@ -185,11 +186,13 @@ public class RutaWidgetPresenter implements Presenter {
 		return imagenCategoria;
 	}
 
+	@SuppressWarnings("unused")
 	private void loadMine() {
 		this.display.getOtherUserPanel().setVisible(false);
 		this.display.getOwnUserPanel().setVisible(true);
 	}
 
+	@SuppressWarnings("unused")
 	private void loadOther() {
 		this.display.getOtherUserPanel().setVisible(true);
 		this.display.getOwnUserPanel().setVisible(false);
@@ -199,6 +202,15 @@ public class RutaWidgetPresenter implements Presenter {
 	public void go(HasWidgets container) {
 		container.clear();
 		container.add(display.asWidget());
+	}
+	
+	@Override
+	public void addIn(VerticalPanel container) {
+		container.add(display.asWidget());
+	}
+	
+	public RutaWidget getDisplay(){
+		return (RutaWidget) display;
 	}
 
 }
