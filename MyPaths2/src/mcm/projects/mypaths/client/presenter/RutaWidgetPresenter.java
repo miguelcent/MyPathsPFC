@@ -5,6 +5,7 @@ import mcm.projects.mypaths.client.service.CategoriaRutaService;
 import mcm.projects.mypaths.client.service.CategoriaRutaServiceAsync;
 import mcm.projects.mypaths.client.service.RutaServiceAsync;
 import mcm.projects.mypaths.client.utils.UtilsImages;
+import mcm.projects.mypaths.client.view.widgets.ListaRutasWidget;
 import mcm.projects.mypaths.client.view.widgets.RutaWidget;
 import mcm.projects.mypaths.shared.dto.CategoriaRutaDTO;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
@@ -64,7 +65,7 @@ public class RutaWidgetPresenter implements Presenter {
 	private final CategoriaRutaServiceAsync categoriaService;
 	
 
-	public RutaWidgetPresenter(String rutaKey, RutaServiceAsync rutaService,
+	public RutaWidgetPresenter(RutaDTO r, RutaServiceAsync rutaService,
 			SimpleEventBus eventBus, Display display) {
 		this.display = display;
 		this.eventBus = eventBus;
@@ -73,22 +74,14 @@ public class RutaWidgetPresenter implements Presenter {
 		this.categoria = new CategoriaRutaDTO();
 		categoriaService = GWT
 				.create(CategoriaRutaService.class);
-		loadRutaDetails(rutaKey);
+		loadRutaDetails(r);
 		bind();
 				
 	}
 
-	private void bind() {
-		this.display.getViewButton().addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				eventBus.fireEvent(new ViewRutaEvent(ruta));
-			}
-		});
-	}
-
-	private void loadRutaDetails(String rutaKey) {
-		rutaService.get(rutaKey, new AsyncCallback<RutaDTO>() {
+	
+	private void loadRutaDetails(RutaDTO rutaKey) {
+		rutaService.get(rutaKey.getKey(), new AsyncCallback<RutaDTO>() {
 			
 			@Override
 			public void onSuccess(RutaDTO result) {
@@ -197,6 +190,16 @@ public class RutaWidgetPresenter implements Presenter {
 		this.display.getOtherUserPanel().setVisible(true);
 		this.display.getOwnUserPanel().setVisible(false);
 	}
+	
+	private void bind() {
+		this.display.getViewButton().addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				eventBus.fireEvent(new ViewRutaEvent(ruta));
+			}
+		});
+	}
+
 	
 	@Override
 	public void go(HasWidgets container) {

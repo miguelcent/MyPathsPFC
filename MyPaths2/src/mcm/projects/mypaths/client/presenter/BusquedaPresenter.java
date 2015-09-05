@@ -1,7 +1,11 @@
 package mcm.projects.mypaths.client.presenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.client.utils.UtilsImages;
+import mcm.projects.mypaths.shared.dto.RutaDTO;
 import mcm.projects.mypaths.shared.dto.UsuarioDTO;
 
 import com.google.gwt.event.dom.client.HasChangeHandlers;
@@ -31,25 +35,28 @@ public class BusquedaPresenter implements Presenter{
 	@SuppressWarnings("unused")
 	private UsuarioDTO user;
 	private final LoginServiceAsync rpcService;
-	@SuppressWarnings("unused")
+	//TODO eventbus no usado porque aun no estan eventos funcionalidad busqueda de rutas.
 	private final SimpleEventBus eventBus;
 	private final Display display;
+	
+	private List<RutaDTO> listaRutas = new ArrayList<RutaDTO>();
 	
 	public BusquedaPresenter(LoginServiceAsync rpcService,
 			SimpleEventBus eventBus, Display display){
 		this.rpcService = rpcService;
 		this.eventBus = eventBus;
 		this.display = display;
+		isLogado();
 		bind();
 	}
-	//TODO pendiente definir que hace lo "clickable"
-	private void bind() {
+	
+	private void isLogado() {
 		String logado = Storage.getSessionStorageIfSupported().getItem("currentUser");
 		rpcService.getLoggedInUserDTO(logado, new AsyncCallback<UsuarioDTO>() {
 			
 			@Override
 			public void onSuccess(UsuarioDTO result) {
-				//TODO mostrar lista de rutas
+				//NADA QUE HACER
 			}
 			
 			@Override
@@ -58,6 +65,10 @@ public class BusquedaPresenter implements Presenter{
 				display.getImagenInicio().add(img);
 			}
 		});
+	}
+	//TODO eventos de funcionalidad de busqueda de rutas.
+	private void bind() {
+		
 		
 	}
 
@@ -72,5 +83,7 @@ public class BusquedaPresenter implements Presenter{
 		// TODO Auto-generated method stub
 		
 	}
-	
+	public List<RutaDTO> getListaRutas(){
+		return listaRutas;
+	}
 }

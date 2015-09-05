@@ -17,17 +17,16 @@
       <tr>
         <td
           valign='top'>
-          <c:CellList
-            addStyleNames='{style.cellTable}'
-            pageSize='15'
-            ui:field='cellList' />
+          <g:VerticalPanel
+            ui:field='cellList'>
+           </g:VerticalPanel>
         </td>
       </tr>
       <tr>
         <td
           align='center'>
           <c:SimplePager
-            ui:field='pager' />
+            ui:field='pager' location='CENTER' pageSize="5" />
         </td>
       </tr>
     </table>

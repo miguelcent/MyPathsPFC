@@ -29,6 +29,7 @@ public class BusquedaView extends Composite implements BusquedaPresenter.Display
 	@UiField Button buscarRutas;
 	@UiField HorizontalPanel formContainer;
 	@UiField SimplePanel imagenInicio;
+	
 
 	public BusquedaView() {
 		initWidget(uiBinder.createAndBindUi(this));

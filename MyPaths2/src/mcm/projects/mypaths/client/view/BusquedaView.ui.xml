@@ -14,6 +14,7 @@
 				</g:HorizontalPanel>
 			</g:DecoratorPanel>
 			<g:SimplePanel ui:field="imagenInicio" styleName="{style.padding5T}"></g:SimplePanel>
+			
 			<!-- Add GWT widgets here. Enter < and hit Ctrl-Space to auto-complete 
 				widget names. The ui:field attribute binds an element to a field in the owner 
 				class. See the GWT docs on UI Binder for more details. -->

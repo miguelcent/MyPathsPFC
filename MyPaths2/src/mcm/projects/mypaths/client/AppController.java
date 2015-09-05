@@ -23,11 +23,11 @@ import mcm.projects.mypaths.client.presenter.AddPathPresenter;
 import mcm.projects.mypaths.client.presenter.BusquedaPresenter;
 import mcm.projects.mypaths.client.presenter.ComentarRutaPopUpPresenter;
 import mcm.projects.mypaths.client.presenter.EditProfilePresenter;
+import mcm.projects.mypaths.client.presenter.ListaRutasPresenter;
 import mcm.projects.mypaths.client.presenter.LoginPresenter;
 import mcm.projects.mypaths.client.presenter.MenuPresenter;
 import mcm.projects.mypaths.client.presenter.Presenter;
 import mcm.projects.mypaths.client.presenter.RegistroPresenter;
-import mcm.projects.mypaths.client.presenter.RutaWidgetPresenter;
 import mcm.projects.mypaths.client.presenter.ValorarRutaPopUpPresenter;
 import mcm.projects.mypaths.client.presenter.VerRutaPresenter;
 import mcm.projects.mypaths.client.service.ComentarioService;
@@ -35,8 +35,6 @@ import mcm.projects.mypaths.client.service.ComentarioServiceAsync;
 import mcm.projects.mypaths.client.service.LoginServiceAsync;
 import mcm.projects.mypaths.client.service.MapaService;
 import mcm.projects.mypaths.client.service.MapaServiceAsync;
-import mcm.projects.mypaths.client.service.RutaService;
-import mcm.projects.mypaths.client.service.RutaServiceAsync;
 import mcm.projects.mypaths.client.service.UserService;
 import mcm.projects.mypaths.client.service.UserServiceAsync;
 import mcm.projects.mypaths.client.service.ValoracionService;
@@ -51,7 +49,7 @@ import mcm.projects.mypaths.client.view.MenuView;
 import mcm.projects.mypaths.client.view.RegistroView;
 import mcm.projects.mypaths.client.view.ValorarRutaPopUpView;
 import mcm.projects.mypaths.client.view.VerRutaView;
-import mcm.projects.mypaths.client.view.widgets.RutaWidget;
+import mcm.projects.mypaths.client.view.widgets.ListaRutasWidget;
 import mcm.projects.mypaths.shared.dto.RutaDTO;
 
 import com.google.gwt.core.client.GWT;
@@ -59,12 +57,8 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.DecoratorPanel;
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.ScrollPanel;
 
 public class AppController implements ValueChangeHandler<String> {
 
@@ -225,17 +219,17 @@ public class AppController implements ValueChangeHandler<String> {
 		Presenter presenter = null;
 		Presenter presenter2 = null;
 		Presenter presenter3 = null;
-		Presenter presenter4 = null;
-		Presenter presenter5 = null;
 
 		if (token != null) {
 
 			if (token.equals("Inicio")) {
 				MyPathsApp.get().getPanelPrincipal().clear();
-				presenter = new BusquedaPresenter(loginService, eventbus,
+				BusquedaPresenter presenterBusquedas = new BusquedaPresenter(loginService, eventbus,
 						new BusquedaView());
-
-				presenter.go(MyPathsApp.get().getPanelBuscar());
+				presenterBusquedas.go(MyPathsApp.get().getPanelBuscar());
+				
+				ListaRutasPresenter rutasUsuario = new ListaRutasPresenter(loginService, eventbus, new ListaRutasWidget());
+				rutasUsuario.go(MyPathsApp.get().getPanelPrincipal());
 				menuView = MenuUtil.getMenu(token);
 				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
 				presenter2.go(MyPathsApp.get().getPanelCabecera()
@@ -283,39 +277,39 @@ public class AppController implements ValueChangeHandler<String> {
 						.getMenuCabecera());
 				MyPathsApp.get().getPanelBuscar().clear();
 				return;
-			} else if (token.equals("PruebaRutaItem")) {
-				RutaWidget vista = new RutaWidget();
-				RutaWidget vista2 = new RutaWidget();
-				RutaWidget vista3 = new RutaWidget();
-				MyPathsApp.get().getPanelPrincipal().clear();
-				Label l = new Label("BÃºsqueda de Rutas");
-				Label l2 = new Label("Ordenar por:   ");
-				CheckBox cb1 = new CheckBox("Categoria");
-				CheckBox cb2 = new CheckBox("Nombre de ruta");
-				VerticalPanel vp = new VerticalPanel();
-				HorizontalPanel hp = new HorizontalPanel();
-				hp.add(l2);
-				hp.add(cb1);
-				hp.add(cb2);
-				vp.add(l);
-				vp.add(hp);
-				DecoratorPanel dp = new DecoratorPanel();
-				dp.add(vp);
-				MyPathsApp.get().getPanelPrincipal().add(dp);
-				RutaServiceAsync rs = GWT.create(RutaService.class);
-				presenter = new RutaWidgetPresenter("agtzfm15cGFodHMyMHIRCxIEUnV0YRiAgICAnfmeCQw", rs, eventbus, vista);
-				presenter.addIn(MyPathsApp.get().getPanelPrincipal());
-				presenter4 = new RutaWidgetPresenter("agtzfm15cGFodHMyMHIRCxIEUnV0YRiAgICA67iPCQw", rs, eventbus, vista2);
-				presenter4.addIn(MyPathsApp.get().getPanelPrincipal());
-				presenter5 = new RutaWidgetPresenter("agtzfm15cGFodHMyMHIRCxIEUnV0YRiAgICA3s_NCAw", rs, eventbus, vista3);
-				presenter5.addIn(MyPathsApp.get().getPanelPrincipal());
-				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
-				presenter2.go(MyPathsApp.get().getPanelCabecera()
-						.getMenuCabecera());
-				presenter3 = new BusquedaPresenter(loginService, eventbus,
-						new BusquedaView());
-				presenter3.go(MyPathsApp.get().getPanelBuscar());
-				return;
+//			} else if (token.equals("PruebaRutaItem")) {
+//				RutaWidget vista = new RutaWidget();
+//				RutaWidget vista2 = new RutaWidget();
+//				RutaWidget vista3 = new RutaWidget();
+//				MyPathsApp.get().getPanelPrincipal().clear();
+//				Label l = new Label("Búsqueda de Rutas");
+//				Label l2 = new Label("Ordenar por:   ");
+//				CheckBox cb1 = new CheckBox("Categoria");
+//				CheckBox cb2 = new CheckBox("Nombre de ruta");
+//				VerticalPanel vp = new VerticalPanel();
+//				HorizontalPanel hp = new HorizontalPanel();
+//				hp.add(l2);
+//				hp.add(cb1);
+//				hp.add(cb2);
+//				vp.add(l);
+//				vp.add(hp);
+//				DecoratorPanel dp = new DecoratorPanel();
+//				dp.add(vp);
+//				MyPathsApp.get().getPanelPrincipal().add(dp);
+//				RutaServiceAsync rs = GWT.create(RutaService.class);
+//				presenter = new RutaWidgetPresenter("agtzfm15cGFodHMyMHIRCxIEUnV0YRiAgICAnfmeCQw", rs, eventbus, vista);
+//				presenter.addIn(MyPathsApp.get().getPanelPrincipal());
+//				presenter4 = new RutaWidgetPresenter("agtzfm15cGFodHMyMHIRCxIEUnV0YRiAgICA67iPCQw", rs, eventbus, vista2);
+//				presenter4.addIn(MyPathsApp.get().getPanelPrincipal());
+//				presenter5 = new RutaWidgetPresenter("agtzfm15cGFodHMyMHIRCxIEUnV0YRiAgICA3s_NCAw", rs, eventbus, vista3);
+//				presenter5.addIn(MyPathsApp.get().getPanelPrincipal());
+//				presenter2 = new MenuPresenter(loginService, eventbus, menuView);
+//				presenter2.go(MyPathsApp.get().getPanelCabecera()
+//						.getMenuCabecera());
+//				presenter3 = new BusquedaPresenter(loginService, eventbus,
+//						new BusquedaView());
+//				presenter3.go(MyPathsApp.get().getPanelBuscar());
+//				return;
 			} else if (token.equals("VerRuta")) {
 //				Window.alert(getRutaDTO().getNombre());
 				VerRutaView vista = new VerRutaView();

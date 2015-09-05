@@ -44,6 +44,8 @@ public class RutaWidget extends Composite implements RutaWidgetPresenter.Display
 	@UiField
 	PushButton viewButton;
 	
+	int keyForList;
+	
 	public RutaWidget(){ 
 		initWidget(uiBinder.createAndBindUi(this));
 	}
@@ -96,5 +98,13 @@ public class RutaWidget extends Composite implements RutaWidgetPresenter.Display
 	@Override
 	public PushButton getViewButton() {
 		return viewButton;
+	}
+
+	public int getKeyForList() {
+		return keyForList;
+	}
+
+	public void setKeyForList(int keyForList) {
+		this.keyForList = keyForList;
 	}
 }

@@ -8,14 +8,13 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-maps.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/dropbox-core-sdk-1.7.7.jar"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT"/>
-	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT (1)"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-samples.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Miguel/Desktop/easymock-3.3.1/easymock-3.3.1-tests.jar"/>
-	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine"/>
+	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER/GWT"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>

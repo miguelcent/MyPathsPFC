@@ -9,14 +9,18 @@
     	</g:north>
     	
     	<g:center>
-    		<g:HTMLPanel>
+    		<g:ScrollPanel >
+    			<g:HTMLPanel>
     			<div align="center">
-   					<g:VerticalPanel ui:field='panelBuscar' />
+    				<g:VerticalPanel horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" width="672px">
+   						<g:VerticalPanel ui:field='panelBuscar' />
+   				
+    			
+   						<g:VerticalPanel ui:field='panelPrincipal' />
+   					</g:VerticalPanel>
    				</div>
-    			<div align="center">
-   					<g:VerticalPanel ui:field='panelPrincipal' />
-   				</div>
-   			</g:HTMLPanel>
+   				</g:HTMLPanel>
+   			</g:ScrollPanel>
 		</g:center> 
 		 
 		<g:south size="2">
